@@ -1703,6 +1703,126 @@ function vocabApp() {
                     { id: 599, character: '葡萄', pinyin: 'pútáo', meaning: 'grape', bangla: 'আঙ্গুর', level: '3', favorite: false },
 
                     { id: 600, character: '普遍', pinyin: 'pǔbiàn', meaning: 'universal; widespread', bangla: 'সর্বব্যাপী', level: '3', favorite: false },
+
+                    { id: 601, character: '普通话', pinyin: 'pǔtōnghuà', meaning: 'Mandarin (Chinese language)', bangla: 'ম্যান্ডারিন (চীনা ভাষা)', level: '3', favorite: false },
+
+                    { id: 602, character: '其次', pinyin: 'qícì', meaning: 'next; secondly', bangla: 'এর পর; দ্বিতীয়ত', level: '3', favorite: false },
+
+                    { id: 603, character: '其中', pinyin: 'qízhōng', meaning: 'among them; in which', bangla: 'এর মধ্যে; যার মধ্যে', level: '3', favorite: false },
+
+                    { id: 604, character: '气候', pinyin: 'qìhòu', meaning: 'climate; weather conditions', bangla: 'আবহাওয়া; জলবায়ু', level: '3', favorite: false },
+
+                    { id: 605, character: '千万', pinyin: 'qiānwàn', meaning: 'ten million; must; be sure to', bangla: 'কোটি; অবশ্যই', level: '3', favorite: false },
+
+                    { id: 606, character: '签', pinyin: 'qiān', meaning: 'sign; autograph; sign a contract', bangla: 'সই করা; চুক্তি স্বাক্ষর', level: '3', favorite: false },
+
+                    { id: 607, character: '签订', pinyin: 'qiāndìng', meaning: 'sign (a treaty/contract)', bangla: 'স্বাক্ষর করা', level: '3', favorite: false },
+
+                    { id: 608, character: '签名', pinyin: 'qiānmíng', meaning: 'signature; sign one’s name', bangla: 'সই; নাম লেখা', level: '3', favorite: false },
+
+                    { id: 609, character: '签证', pinyin: 'qiānzhèng', meaning: 'visa', bangla: 'ভিসা', level: '3', favorite: false },
+
+                    { id: 610, character: '前', pinyin: 'qián', meaning: 'front; forward; ago', bangla: 'সামনে; আগে', level: '3', favorite: false },
+
+                    { id: 611, character: '前后', pinyin: 'qiánhòu', meaning: 'around; about; front and back', bangla: 'সামনে-পিছনে; প্রায়', level: '3', favorite: false },
+
+                    { id: 612, character: '前面', pinyin: 'qiánmiàn', meaning: 'in front; ahead', bangla: 'সামনে', level: '3', favorite: false },
+
+                    { id: 613, character: '前往', pinyin: 'qiánwǎng', meaning: 'go to; proceed to', bangla: 'যাওয়া; অগ্রসর হওয়া', level: '3', favorite: false },
+
+                    { id: 614, character: '欠', pinyin: 'qiàn', meaning: 'owe; lack', bangla: 'ঋণী; অভাব', level: '3', favorite: false },
+
+                    { id: 615, character: '强调', pinyin: 'qiángdiào', meaning: 'stress; emphasize', bangla: 'জোর দেওয়া', level: '3', favorite: false },
+
+                    { id: 616, character: '强烈', pinyin: 'qiángliè', meaning: 'intense; strong', bangla: 'তীব্র; শক্তিশালী', level: '3', favorite: false },
+
+                    { id: 617, character: '墙', pinyin: 'qiáng', meaning: 'wall', bangla: 'দেয়াল', level: '3', favorite: false },
+
+                    { id: 618, character: '抢', pinyin: 'qiǎng', meaning: 'snatch; rob; rush', bangla: 'ছিনিয়ে নেওয়া; ছুটে যাওয়া', level: '3', favorite: false },
+
+                    { id: 619, character: '抢救', pinyin: 'qiǎngjiù', meaning: 'rescue; save urgently', bangla: 'আত্মরক্ষা; তাৎক্ষণিক উদ্ধার', level: '3', favorite: false },
+
+                    { id: 620, character: '强迫', pinyin: 'qiǎngpò', meaning: 'force; compel', bangla: 'বাধ্য করা', level: '3', favorite: false },
+
+                    { id: 621, character: '悄悄', pinyin: 'qiāoqiāo', meaning: 'quietly; secretly', bangla: 'চুপিচুপি', level: '3', favorite: false },
+
+                    { id: 622, character: '敲', pinyin: 'qiāo', meaning: 'knock; tap', bangla: 'কড়া নাড়া', level: '3', favorite: false },
+
+                    { id: 623, character: '桥', pinyin: 'qiáo', meaning: 'bridge', bangla: 'পুল', level: '3', favorite: false },
+
+                    { id: 624, character: '巧克力', pinyin: 'qiǎokèlì', meaning: 'chocolate', bangla: 'চকোলেট', level: '3', favorite: false },
+
+                    { id: 625, character: '亲戚', pinyin: 'qīnqi', meaning: 'relative; kin', bangla: 'আত্মীয়', level: '3', favorite: false },
+
+                    { id: 626, character: '亲切', pinyin: 'qīnqiè', meaning: 'kind; cordial; close', bangla: 'আন্তরিক; স্নেহময়', level: '3', favorite: false },
+
+                    { id: 627, character: '青春', pinyin: 'qīngchūn', meaning: 'youth; adolescence', bangla: 'যৌবন', level: '3', favorite: false },
+
+                    { id: 628, character: '轻松', pinyin: 'qīngsōng', meaning: 'relaxed; light', bangla: 'আরামদায়ক', level: '3', favorite: false },
+
+                    { id: 629, character: '情况', pinyin: 'qíngkuàng', meaning: 'situation; condition', bangla: 'পরিস্থিতি', level: '3', favorite: false },
+
+                    { id: 630, character: '穷', pinyin: 'qióng', meaning: 'poor; impoverished', bangla: 'দরিদ্র', level: '3', favorite: false },
+
+                    { id: 631, character: '区别', pinyin: 'qūbié', meaning: 'difference; distinction', bangla: 'পার্থক্য', level: '3', favorite: false },
+
+                    { id: 632, character: '取', pinyin: 'qǔ', meaning: 'take; get; fetch', bangla: 'নেওয়া; অর্জন করা', level: '3', favorite: false },
+
+                    { id: 633, character: '取消', pinyin: 'qǔxiāo', meaning: 'cancel; abolish', bangla: 'বাতিল করা', level: '3', favorite: false },
+
+                    { id: 634, character: '娶', pinyin: 'qǔ', meaning: 'marry (a woman)', bangla: 'বিয়ে করা (নারীকে)', level: '3', favorite: false },
+
+                    { id: 635, character: '去', pinyin: 'qù', meaning: 'go; leave; remove', bangla: 'যাওয়া; চলে যাওয়া', level: '3', favorite: false },
+
+                    { id: 636, character: '去年', pinyin: 'qùnián', meaning: 'last year', bangla: 'গত বছর', level: '3', favorite: false },
+
+                    { id: 637, character: '全部', pinyin: 'quánbù', meaning: 'all; whole; entirely', bangla: 'সব; সম্পূর্ণভাবে', level: '3', favorite: false },
+
+                    { id: 638, character: '全面', pinyin: 'quánmiàn', meaning: 'overall; comprehensive', bangla: 'সর্বাত্মক; বিস্তৃত', level: '3', favorite: false },
+
+                    { id: 639, character: '劝', pinyin: 'quàn', meaning: 'advise; urge; persuade', bangla: 'পরামর্শ দেওয়া; বোঝানো', level: '3', favorite: false },
+
+                    { id: 640, character: '却', pinyin: 'què', meaning: 'but; yet; however', bangla: 'কিন্তু; তবুও', level: '3', favorite: false },
+
+                    { id: 641, character: '确实', pinyin: 'quèshí', meaning: 'indeed; really; certainly', bangla: 'প্রকৃতই; নিশ্চয়', level: '3', favorite: false },
+
+                    { id: 642, character: '群', pinyin: 'qún', meaning: 'group; crowd; flock', bangla: 'দল; ভিড়', level: '3', favorite: false },
+
+                    { id: 643, character: '裙子', pinyin: 'qúnzi', meaning: 'skirt', bangla: 'স্কার্ট', level: '3', favorite: false },
+
+                    { id: 644, character: '然而', pinyin: 'rán ér', meaning: 'however; yet; but', bangla: 'তবে; কিন্তু', level: '3', favorite: false },
+
+                    { id: 645, character: '然后', pinyin: 'ránhòu', meaning: 'then; after that', bangla: 'তারপর', level: '3', favorite: false },
+
+                    { id: 646, character: '让', pinyin: 'ràng', meaning: 'let; allow; yield', bangla: 'ছাড়া; অনুমতি দেওয়া', level: '3', favorite: false },
+
+                    { id: 647, character: '热', pinyin: 'rè', meaning: 'hot; heat; popular', bangla: 'গরম; জনপ্রিয়', level: '3', favorite: false },
+
+                    { id: 648, character: '热爱', pinyin: 'rè ài', meaning: 'love ardently; be fond of', bangla: 'ভালোবাসা', level: '3', favorite: false },
+
+                    { id: 649, character: '热闹', pinyin: 'rènao', meaning: 'lively; bustling with activity', bangla: 'উৎসবমুখর', level: '3', favorite: false },
+
+                    { id: 650, character: '热情', pinyin: 'rèqíng', meaning: 'enthusiasm; warm-hearted', bangla: 'উৎসাহ; আত্মীয়সুলভ', level: '3', favorite: false },
+
+                    { id: 651, character: '人体', pinyin: 'réntǐ', meaning: 'human body', bangla: 'মানবদেহ', level: '3', favorite: false },
+
+                    { id: 652, character: '人民', pinyin: 'rénmín', meaning: 'people; the public', bangla: 'জনগণ', level: '3', favorite: false },
+
+                    { id: 653, character: '人民币', pinyin: 'rénmínbì', meaning: 'Renminbi (RMB; Chinese currency)', bangla: 'ইউয়ান (চীনা মুদ্রা)', level: '3', favorite: false },
+
+                    { id: 654, character: '人数', pinyin: 'rénshù', meaning: 'number of people', bangla: 'লোকসংখ্যা', level: '3', favorite: false },
+
+                    { id: 655, character: '人员', pinyin: 'rényuán', meaning: 'staff; personnel', bangla: 'কর্মী; সদস্য', level: '3', favorite: false },
+
+                    { id: 656, character: '认为', pinyin: 'rènwéi', meaning: 'believe; think; consider', bangla: 'মনে করা', level: '3', favorite: false },
+
+                    { id: 657, character: '认真', pinyin: 'rènzhēn', meaning: 'serious; earnest; careful', bangla: 'গুরুত্বপূর্ণ; গভীরভাবে', level: '3', favorite: false },
+
+                    { id: 658, character: '任何', pinyin: 'rènhé', meaning: 'any; whatever', bangla: 'যে কোনো', level: '3', favorite: false },
+
+                    { id: 659, character: '任务', pinyin: 'rènwu', meaning: 'task; mission', bangla: 'কাজ; দায়িত্ব', level: '3', favorite: false },
+
+                    { id: 660, character: '仍然', pinyin: 'réngrán', meaning: 'still; yet; as before', bangla: 'এখনও; তবুও', level: '3', favorite: false },
                     
                     // HSK Level 4 words with Bangla meanings
                     { id: 301, character: '爱情', pinyin: 'àiqíng', meaning: 'romantic love', bangla: 'রোমান্টিক ভালবাসা', level: '4', favorite: false },
