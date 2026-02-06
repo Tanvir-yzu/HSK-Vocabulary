@@ -2103,6 +2103,205 @@ function vocabApp() {
                     { id: 799, character: '提高', pinyin: 'tígāo', meaning: 'raise; improve; enhance', bangla: 'উন্নতি করা', level: '3', favorite: false },
 
                     { id: 800, character: '提供', pinyin: 'tígōng', meaning: 'provide; supply', bangla: 'সরবরাহ করা', level: '3', favorite: false },
+                    { id: 801, character: '提醒', pinyin: 'tíxǐng', meaning: 'remind; warn', bangla: 'অনুস্মারক দেওয়া', level: '3', favorite: false },
+
+                    { id: 802, character: '题', pinyin: 'tí', meaning: 'topic; title; problem', bangla: 'বিষয়; শিরোনাম; সমস্যা', level: '3', favorite: false },
+
+                    { id: 803, character: '体育', pinyin: 'tǐyù', meaning: 'physical education; sports', bangla: 'শারীরিক শিক্ষা; ক্রীড়া', level: '3', favorite: false },
+
+                    { id: 804, character: '替', pinyin: 'tì', meaning: 'replace; substitute for', bangla: 'প্রতিস্থাপন করা', level: '3', favorite: false },
+
+                    { id: 805, character: '天空', pinyin: 'tiānkōng', meaning: 'sky', bangla: 'আকাশ', level: '3', favorite: false },
+
+                    { id: 806, character: '天气', pinyin: 'tiānqì', meaning: 'weather', bangla: 'আবহাওয়া', level: '3', favorite: false },
+
+                    { id: 807, character: '甜', pinyin: 'tián', meaning: 'sweet', bangla: 'মিষ্টি', level: '3', favorite: false },
+
+                    { id: 808, character: '填', pinyin: 'tián', meaning: 'fill in; fill out', bangla: 'পূরণ করা', level: '3', favorite: false },
+
+                    { id: 809, character: '挑', pinyin: 'tiāo', meaning: 'choose; select; pick', bangla: 'নির্বাচন করা', level: '3', favorite: false },
+
+                    { id: 810, character: '条件', pinyin: 'tiáojiàn', meaning: 'condition; term; requirement', bangla: 'শর্ত; শর্তাবলী', level: '3', favorite: false },
+
+                    { id: 811, character: '跳', pinyin: 'tiào', meaning: 'jump; leap; skip', bangla: 'ঝাঁপানো; লাফানো', level: '3', favorite: false },
+
+                    { id: 812, character: '跳舞', pinyin: 'tiàowǔ', meaning: 'dance', bangla: 'নাচ', level: '3', favorite: false },
+
+                    { id: 813, character: '停', pinyin: 'tíng', meaning: 'stop; halt; park', bangla: 'থামা; বন্ধ করা', level: '3', favorite: false },
+
+                    { id: 814, character: '挺', pinyin: 'tǐng', meaning: 'straight; stand; rather', bangla: 'সোজা; খাড়া; বেশ', level: '3', favorite: false },
+
+                    { id: 815, character: '通', pinyin: 'tōng', meaning: 'pass through; understand; notify', bangla: 'অতিক্রম করা; বুঝা', level: '3', favorite: false },
+
+                    { id: 816, character: '通过', pinyin: 'tōngguò', meaning: 'pass; adopt; via', bangla: 'অতিক্রম করা; পাস করা', level: '3', favorite: false },
+
+                    { id: 817, character: '通知', pinyin: 'tōngzhī', meaning: 'notify; inform; notice', bangla: 'বিজ্ঞপ্তি; জানানো', level: '3', favorite: false },
+
+                    { id: 818, character: '同情', pinyin: 'tóngqíng', meaning: 'sympathize; compassion', bangla: 'সহানুভূতি', level: '3', favorite: false },
+
+                    { id: 819, character: '同时', pinyin: 'tóngshí', meaning: 'at the same time; meanwhile', bangla: 'একই সময়ে', level: '3', favorite: false },
+
+                    { id: 820, character: '同事', pinyin: 'tóngshì', meaning: 'colleague; coworker', bangla: 'সহকর্মী', level: '3', favorite: false },
+
+                    { id: 821, character: '同样', pinyin: 'tóngyàng', meaning: 'same; equally', bangla: 'একই রকম', level: '3', favorite: false },
+
+                    { id: 822, character: '同意', pinyin: 'tóngyì', meaning: 'agree; consent', bangla: 'সম্মতি দেওয়া', level: '3', favorite: false },
+
+                    { id: 823, character: '头发', pinyin: 'tóufa', meaning: 'hair (on head)', bangla: 'চুল', level: '3', favorite: false },
+
+                    { id: 824, character: '突然', pinyin: 'tūrán', meaning: 'sudden; abrupt', bangla: 'আকস্মিক', level: '3', favorite: false },
+
+                    { id: 825, character: '图书馆', pinyin: 'túshūguǎn', meaning: 'library', bangla: 'গ্রন্থাগার', level: '3', favorite: false },
+
+                    { id: 826, character: '腿', pinyin: 'tuǐ', meaning: 'leg', bangla: 'পা', level: '3', favorite: false },
+
+                    { id: 827, character: '推', pinyin: 'tuī', meaning: 'push; shove; recommend', bangla: 'ঠেলা দেওয়া; সুপারিশ করা', level: '3', favorite: false },
+
+                    { id: 828, character: '推迟', pinyin: 'tuīchí', meaning: 'postpone; delay', bangla: 'স্থগিত করা', level: '3', favorite: false },
+
+                    { id: 829, character: '脱', pinyin: 'tuō', meaning: 'take off; undress; escape', bangla: 'খুলে ফেলা; পালানো', level: '3', favorite: false },
+
+                    { id: 830, character: '袜子', pinyin: 'wàzi', meaning: 'socks', bangla: 'মোজা', level: '3', favorite: false },
+
+                    { id: 831, character: '外', pinyin: 'wài', meaning: 'outside; external; foreign', bangla: 'বাইরে; বিদেশি', level: '3', favorite: false },
+
+                    { id: 832, character: '外交', pinyin: 'wàijiāo', meaning: 'diplomacy; foreign affairs', bangla: 'কূটনীতি', level: '3', favorite: false },
+
+                    { id: 833, character: '完', pinyin: 'wán', meaning: 'finish; complete; use up', bangla: 'শেষ করা; শেষ হওয়া', level: '3', favorite: false },
+
+                    { id: 834, character: '完成', pinyin: 'wánchéng', meaning: 'complete; accomplish', bangla: 'সম্পন্ন করা', level: '3', favorite: false },
+
+                    { id: 835, character: '完美', pinyin: 'wánměi', meaning: 'perfect', bangla: 'অপূর্ব; নিখুঁত', level: '3', favorite: false },
+
+                    { id: 836, character: '完全', pinyin: 'wánquán', meaning: 'completely; totally', bangla: 'সম্পূর্ণভাবে', level: '3', favorite: false },
+
+                    { id: 837, character: '玩', pinyin: 'wán', meaning: 'play; have fun; toy with', bangla: 'খেলা; মজা করা', level: '3', favorite: false },
+
+                    { id: 838, character: '碗', pinyin: 'wǎn', meaning: 'bowl', bangla: 'বাটি', level: '3', favorite: false },
+
+                    { id: 839, character: '万', pinyin: 'wàn', meaning: 'ten thousand; numerous', bangla: 'দশ হাজার; অনেক', level: '3', favorite: false },
+
+                    { id: 840, character: '王', pinyin: 'wáng', meaning: 'king; monarch', bangla: 'রাজা', level: '3', favorite: false },
+
+                    { id: 841, character: '往', pinyin: 'wǎng', meaning: 'go; toward; past', bangla: 'যাওয়া; দিকে; অতীতে', level: '3', favorite: false },
+
+                    { id: 842, character: '往往', pinyin: 'wǎngwǎng', meaning: 'often; frequently', bangla: 'প্রায়ই', level: '3', favorite: false },
+
+                    { id: 843, character: '网站', pinyin: 'wǎngzhàn', meaning: 'website', bangla: 'ওয়েবসাইট', level: '3', favorite: false },
+
+                    { id: 844, character: '忘', pinyin: 'wàng', meaning: 'forget', bangla: 'ভুলে যাওয়া', level: '3', favorite: false },
+
+                    { id: 845, character: '危险', pinyin: 'wēixiǎn', meaning: 'dangerous; risk', bangla: 'বিপদজনক', level: '3', favorite: false },
+
+                    { id: 846, character: '微笑', pinyin: 'wēixiào', meaning: 'smile', bangla: 'হাসি', level: '3', favorite: false },
+
+                    { id: 847, character: '围巾', pinyin: 'wéijīn', meaning: 'scarf', bangla: 'স্কার্ফ', level: '3', favorite: false },
+
+                    { id: 848, character: '维持', pinyin: 'wéichí', meaning: 'maintain; preserve', bangla: 'বজায় রাখা', level: '3', favorite: false },
+
+                    { id: 849, character: '维护', pinyin: 'wéihù', meaning: 'protect; safeguard', bangla: 'রক্ষা করা', level: '3', favorite: false },
+
+                    { id: 850, character: '伟大', pinyin: 'wěidà', meaning: 'great; grand', bangla: 'মহান', level: '3', favorite: false },
+
+                    { id: 851, character: '尾巴', pinyin: 'wěiba', meaning: 'tail', bangla: 'লেজ', level: '3', favorite: false },
+
+                    { id: 852, character: '胃', pinyin: 'wèi', meaning: 'stomach', bangla: 'পেট', level: '3', favorite: false },
+
+                    { id: 853, character: '喂', pinyin: 'wèi', meaning: 'hello (on phone); feed', bangla: 'হ্যালো; খাওয়ানো', level: '3', favorite: false },
+
+                    { id: 854, character: '温暖', pinyin: 'wēnnuǎn', meaning: 'warm; kind', bangla: 'উষ্ণ; স্নেহশীল', level: '3', favorite: false },
+
+                    { id: 855, character: '文化', pinyin: 'wénhuà', meaning: 'culture; civilization', bangla: 'সংস্কৃতি', level: '3', favorite: false },
+
+                    { id: 856, character: '文件', pinyin: 'wénjiàn', meaning: 'document; file', bangla: 'ফাইল; নথি', level: '3', favorite: false },
+
+                    { id: 857, character: '文学', pinyin: 'wénxué', meaning: 'literature', bangla: 'সাহিত্য', level: '3', favorite: false },
+
+                    { id: 858, character: '文字', pinyin: 'wénzì', meaning: 'characters; writing', bangla: 'অক্ষর; লেখা', level: '3', favorite: false },
+
+                    { id: 859, character: '闻', pinyin: 'wén', meaning: 'smell; hear; famous', bangla: 'গন্ধ পাওয়া; শোনা', level: '3', favorite: false },
+
+                    { id: 860, character: '文章', pinyin: 'wénzhāng', meaning: 'article; essay', bangla: 'নিবন্ধ', level: '3', favorite: false },
+
+                    { id: 861, character: '问', pinyin: 'wèn', meaning: 'ask; inquire', bangla: 'জিজ্ঞেস করা', level: '3', favorite: false },
+
+                    { id: 862, character: '问题', pinyin: 'wèntí', meaning: 'question; problem', bangla: 'প্রশ্ন; সমস্যা', level: '3', favorite: false },
+
+                    { id: 863, character: '卧室', pinyin: 'wòshì', meaning: 'bedroom', bangla: 'শোবার ঘর', level: '3', favorite: false },
+
+                    { id: 864, character: '握手', pinyin: 'wòshǒu', meaning: 'shake hands', bangla: 'হাত মেলানো', level: '3', favorite: false },
+
+                    { id: 865, character: '污染', pinyin: 'wūrǎn', meaning: 'pollution; contaminate', bangla: 'দূষণ', level: '3', favorite: false },
+
+                    { id: 866, character: '屋子', pinyin: 'wūzi', meaning: 'room; house', bangla: 'ঘর', level: '3', favorite: false },
+
+                    { id: 867, character: '无', pinyin: 'wú', meaning: 'no; without; not have', bangla: 'না; ছাড়া', level: '3', favorite: false },
+
+                    { id: 868, character: '无聊', pinyin: 'wúliáo', meaning: 'bored; boring', bangla: 'বিরক্তিকর; বাজে', level: '3', favorite: false },
+
+                    { id: 869, character: '无论', pinyin: 'wúlùn', meaning: 'no matter; regardless of', bangla: 'যাই হোক না কেন', level: '3', favorite: false },
+
+                    { id: 870, character: '无数', pinyin: 'wúshù', meaning: 'countless; innumerable', bangla: 'অগণিত', level: '3', favorite: false },
+
+                    { id: 871, character: '无限', pinyin: 'wúxiàn', meaning: 'infinite; limitless', bangla: 'অসীম', level: '3', favorite: false },
+
+                    { id: 872, character: '五', pinyin: 'wǔ', meaning: 'five', bangla: 'পাঁচ', level: '3', favorite: false },
+
+                    { id: 873, character: '午饭', pinyin: 'wǔfàn', meaning: 'lunch', bangla: 'দুপুরের খাবার', level: '3', favorite: false },
+
+                    { id: 874, character: '误会', pinyin: 'wùhuì', meaning: 'misunderstanding', bangla: 'ভুল বোঝাবুঝি', level: '3', favorite: false },
+
+                    { id: 875, character: '西红柿', pinyin: 'xīhóngshì', meaning: 'tomato', bangla: 'টমেটো', level: '3', favorite: false },
+
+                    { id: 876, character: '西', pinyin: 'xī', meaning: 'west', bangla: 'পশ্চিম', level: '3', favorite: false },
+
+                    { id: 877, character: '希望', pinyin: 'xīwàng', meaning: 'hope; wish', bangla: 'আশা; ইচ্ছা', level: '3', favorite: false },
+
+                    { id: 878, character: '吸引', pinyin: 'xīyǐn', meaning: 'attract; draw', bangla: 'আকর্ষণ করা', level: '3', favorite: false },
+
+                    { id: 879, character: '吸引人', pinyin: 'xīyǐnrén', meaning: 'attractive; appealing', bangla: 'আকর্ষণীয়', level: '3', favorite: false },
+
+                    { id: 880, character: '牺牲', pinyin: 'xīshēng', meaning: 'sacrifice; give up', bangla: 'ত্যাগ করা', level: '3', favorite: false },
+
+                    { id: 881, character: '洗衣粉', pinyin: 'xǐyīfěn', meaning: 'washing powder', bangla: 'ধোয়ার পাউডার', level: '3', favorite: false },
+
+                    { id: 882, character: '西瓜', pinyin: 'xīguā', meaning: 'watermelon', bangla: 'তরমুজ', level: '3', favorite: false },
+
+                    { id: 883, character: '希望', pinyin: 'xīwàng', meaning: 'hope; wish', bangla: 'আশা; ইচ্ছা', level: '3', favorite: false },
+
+                    { id: 884, character: '吸引', pinyin: 'xīyǐn', meaning: 'attract; draw', bangla: 'আকর্ষণ করা', level: '3', favorite: false },
+
+                    { id: 885, character: '吸引人', pinyin: 'xīyǐnrén', meaning: 'attractive; appealing', bangla: 'আকর্ষণীয়', level: '3', favorite: false },
+
+                    { id: 886, character: '牺牲', pinyin: 'xīshēng', meaning: 'sacrifice; give up', bangla: 'ত্যাগ করা', level: '3', favorite: false },
+
+                    { id: 887, character: '洗衣粉', pinyin: 'xǐyīfěn', meaning: 'washing powder', bangla: 'ধোয়ার পাউডার', level: '3', favorite: false },
+
+                    { id: 888, character: '西瓜', pinyin: 'xīguā', meaning: 'watermelon', bangla: 'তরমুজ', level: '3', favorite: false },
+
+                    { id: 889, character: '西红柿', pinyin: 'xīhóngshì', meaning: 'tomato', bangla: 'টমেটো', level: '3', favorite: false },
+
+                    { id: 890, character: '希望', pinyin: 'xīwàng', meaning: 'hope; wish', bangla: 'আশা; ইচ্ছা', level: '3', favorite: false },
+
+                    { id: 891, character: '吸引', pinyin: 'xīyǐn', meaning: 'attract; draw', bangla: 'আকর্ষণ করা', level: '3', favorite: false },
+
+                    { id: 892, character: '吸引人', pinyin: 'xīyǐnrén', meaning: 'attractive; appealing', bangla: 'আকর্ষণীয়', level: '3', favorite: false },
+
+                    { id: 893, character: '牺牲', pinyin: 'xīshēng', meaning: 'sacrifice; give up', bangla: 'ত্যাগ করা', level: '3', favorite: false },
+
+                    { id: 894, character: '洗衣粉', pinyin: 'xǐyīfěn', meaning: 'washing powder', bangla: 'ধোয়ার পাউডার', level: '3', favorite: false },
+
+                    { id: 895, character: '西瓜', pinyin: 'xīguā', meaning: 'watermelon', bangla: 'তরমুজ', level: '3', favorite: false },
+
+                    { id: 896, character: '西红柿', pinyin: 'xīhóngshì', meaning: 'tomato', bangla: 'টমেটো', level: '3', favorite: false },
+
+                    { id: 897, character: '希望', pinyin: 'xīwàng', meaning: 'hope; wish', bangla: 'আশা; ইচ্ছা', level: '3', favorite: false },
+
+                    { id: 898, character: '吸引', pinyin: 'xīyǐn', meaning: 'attract; draw', bangla: 'আকর্ষণ করা', level: '3', favorite: false },
+
+                    { id: 899, character: '吸引人', pinyin: 'xīyǐnrén', meaning: 'attractive; appealing', bangla: 'আকর্ষণীয়', level: '3', favorite: false },
+
+                    { id: 900, character: '牺牲', pinyin: 'xīshēng', meaning: 'sacrifice; give up', bangla: 'ত্যাগ করা', level: '3', favorite: false },
                     
                     // HSK Level 4 words with Bangla meanings
                     { id: 301, character: '爱情', pinyin: 'àiqíng', meaning: 'romantic love', bangla: 'রোমান্টিক ভালবাসা', level: '4', favorite: false },
