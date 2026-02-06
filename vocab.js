@@ -1583,6 +1583,126 @@ function vocabApp() {
                     { id: 539, character: '梦想', pinyin: 'mèngxiǎng', meaning: 'dream; aspiration', bangla: 'স্বপ্ন; লক্ষ্য', level: '3', favorite: false },
 
                     { id: 540, character: '秘密', pinyin: 'mìmì', meaning: 'secret', bangla: 'গোপন', level: '3', favorite: false },
+
+                    { id: 541, character: '密码', pinyin: 'mìmǎ', meaning: 'password; code', bangla: 'পাসওয়ার্ড; কোড', level: '3', favorite: false },
+
+                    { id: 542, character: '免费', pinyin: 'miǎnfèi', meaning: 'free of charge', bangla: 'বিনামূল্যে', level: '3', favorite: false },
+
+                    { id: 543, character: '民族', pinyin: 'mínzú', meaning: 'nation; ethnic group', bangla: 'জাতি; গোষ্ঠী', level: '3', favorite: false },
+
+                    { id: 544, character: '明白', pinyin: 'míngbai', meaning: 'understand; clear', bangla: 'বুঝতে পারা; স্পষ্ট', level: '3', favorite: false },
+
+                    { id: 545, character: '明显', pinyin: 'míngxiǎn', meaning: 'obvious; evident', bangla: 'স্পষ্ট', level: '3', favorite: false },
+
+                    { id: 546, character: '明星', pinyin: 'míngxīng', meaning: 'star (celebrity)', bangla: 'তারকা; সেলিব্রিটি', level: '3', favorite: false },
+
+                    { id: 547, character: '摸', pinyin: 'mō', meaning: 'touch; feel', bangla: 'স্পর্শ করা', level: '3', favorite: false },
+
+                    { id: 548, character: '模特', pinyin: 'mótè', meaning: 'model (fashion)', bangla: 'মডেল', level: '3', favorite: false },
+
+                    { id: 549, character: '末', pinyin: 'mò', meaning: 'end; last; final', bangla: 'শেষ; শেষের', level: '3', favorite: false },
+
+                    { id: 550, character: '母亲', pinyin: 'mǔqīn', meaning: 'mother', bangla: 'মা', level: '3', favorite: false },
+
+                    { id: 551, character: '目', pinyin: 'mù', meaning: 'eye; look; item (in a list)', bangla: 'চোখ; দেখা; বিষয়', level: '3', favorite: false },
+
+                    { id: 552, character: '目标', pinyin: 'mùbiāo', meaning: 'goal; target', bangla: 'লক্ষ্য', level: '3', favorite: false },
+
+                    { id: 553, character: '目前', pinyin: 'mùqián', meaning: 'at present; currently', bangla: 'বর্তমানে', level: '3', favorite: false },
+
+                    { id: 554, character: '拿', pinyin: 'ná', meaning: 'take; hold; bring', bangla: 'নেওয়া; ধরে রাখা', level: '3', favorite: false },
+
+                    { id: 555, character: '耐心', pinyin: 'nàixīn', meaning: 'patient; patience', bangla: 'ধৈর্য', level: '3', favorite: false },
+
+                    { id: 556, character: '男', pinyin: 'nán', meaning: 'male; man', bangla: 'পুরুষ', level: '3', favorite: false },
+
+                    { id: 557, character: '男子', pinyin: 'nánzǐ', meaning: 'man; male person', bangla: 'পুরুষ ব্যক্তি', level: '3', favorite: false },
+
+                    { id: 558, character: '难过', pinyin: 'nánguò', meaning: 'sad; upset', bangla: 'দুঃখিত; বিষণ্ণ', level: '3', favorite: false },
+
+                    { id: 559, character: '难免', pinyin: 'nánmiǎn', meaning: 'hard to avoid; unavoidable', bangla: 'এড়ানো কঠিন', level: '3', favorite: false },
+
+                    { id: 560, character: '脑子', pinyin: 'nǎozi', meaning: 'brain; mind', bangla: 'মগজ; মন', level: '3', favorite: false },
+
+                    { id: 561, character: '闹', pinyin: 'nào', meaning: 'make noise; disturb; noisy', bangla: 'শব্দ করা; বিরক্ত করা', level: '3', favorite: false },
+
+                    { id: 562, character: '闹钟', pinyin: 'nàozhōng', meaning: 'alarm clock', bangla: 'ঘড়ি (অ্যালার্ম)', level: '3', favorite: false },
+
+                    { id: 563, character: '内部', pinyin: 'nèibù', meaning: 'internal; inside', bangla: 'অভ্যন্তরীণ', level: '3', favorite: false },
+
+                    { id: 564, character: '内容', pinyin: 'nèiróng', meaning: 'content; substance', bangla: 'বিষয়বস্তু', level: '3', favorite: false },
+
+                    { id: 565, character: '内心', pinyin: 'nèixīn', meaning: 'inner heart; inner feelings', bangla: 'অন্তরের অনুভূতি', level: '3', favorite: false },
+
+                    { id: 566, character: '能力', pinyin: 'nénglì', meaning: 'ability; capability', bangla: 'ক্ষমতা', level: '3', favorite: false },
+
+                    { id: 567, character: '能够', pinyin: 'nénggòu', meaning: 'can; be able to', bangla: 'পারা', level: '3', favorite: false },
+
+                    { id: 568, character: '年龄', pinyin: 'niánlíng', meaning: 'age', bangla: 'বয়স', level: '3', favorite: false },
+
+                    { id: 569, character: '年轻', pinyin: 'niánqīng', meaning: 'young', bangla: 'তরুণ', level: '3', favorite: false },
+
+                    { id: 570, character: '鸟', pinyin: 'niǎo', meaning: 'bird', bangla: 'পাখি', level: '3', favorite: false },
+
+                    { id: 571, character: '女士', pinyin: 'nǚshì', meaning: 'Ms.; lady', bangla: 'সুন্দরী; মহিলা', level: '3', favorite: false },
+
+                    { id: 572, character: '女性', pinyin: 'nǚxìng', meaning: 'female; woman', bangla: 'নারী', level: '3', favorite: false },
+
+                    { id: 573, character: '暖和', pinyin: 'nuǎnhuo', meaning: 'warm; nice and warm', bangla: 'উষ্ণ', level: '3', favorite: false },
+
+                    { id: 574, character: '偶尔', pinyin: 'ǒu ěr', meaning: 'occasionally; once in a while', bangla: 'কখনো কখনো', level: '3', favorite: false },
+
+                    { id: 575, character: '拍', pinyin: 'pāi', meaning: 'pat; clap; shoot (photo/film)', bangla: 'চাপ দেওয়া; ছবি তোলা', level: '3', favorite: false },
+
+                    { id: 576, character: '拍照', pinyin: 'pāizhào', meaning: 'take a photo', bangla: 'ছবি তোলা', level: '3', favorite: false },
+
+                    { id: 577, character: '排球', pinyin: 'páiqiú', meaning: 'volleyball', bangla: 'ভলিবল', level: '3', favorite: false },
+
+                    { id: 578, character: '牌', pinyin: 'pái', meaning: 'plate; sign; card; brand', bangla: 'প্লেট; সাইন; কার্ড', level: '3', favorite: false },
+
+                    { id: 579, character: '派', pinyin: 'pài', meaning: 'send; dispatch; faction', bangla: 'প্রেরণ করা; দল', level: '3', favorite: false },
+
+                    { id: 580, character: '判断', pinyin: 'pànduàn', meaning: 'judge; determine', bangla: 'বিচার করা', level: '3', favorite: false },
+
+                    { id: 581, character: '胖', pinyin: 'pàng', meaning: 'fat; overweight', bangla: 'মোটা', level: '3', favorite: false },
+
+                    { id: 582, character: '跑步', pinyin: 'pǎobù', meaning: 'run; jogging', bangla: 'দৌড়', level: '3', favorite: false },
+
+                    { id: 583, character: '陪', pinyin: 'péi', meaning: 'accompany; keep someone company', bangla: 'সঙ্গ দেওয়া', level: '3', favorite: false },
+
+                    { id: 584, character: '赔', pinyin: 'péi', meaning: 'compensate; pay for loss', bangla: 'ক্ষতিপূরণ দেওয়া', level: '3', favorite: false },
+
+                    { id: 585, character: '培训', pinyin: 'péixùn', meaning: 'training; coaching', bangla: 'প্রশিক্ষণ', level: '3', favorite: false },
+
+                    { id: 586, character: '培养', pinyin: 'péiyǎng', meaning: 'cultivate; foster; train', bangla: 'প্রতিপালন করা', level: '3', favorite: false },
+
+                    { id: 587, character: '培育', pinyin: 'péiyù', meaning: 'cultivate; nurture', bangla: 'উৎপাদন; লালন-পালন', level: '3', favorite: false },
+
+                    { id: 588, character: '碰', pinyin: 'pèng', meaning: 'touch; bump into; meet by chance', bangla: 'আঘাত করা; সংঘর্ষ', level: '3', favorite: false },
+
+                    { id: 589, character: '皮肤', pinyin: 'pífū', meaning: 'skin', bangla: 'ত্বক', level: '3', favorite: false },
+
+                    { id: 590, character: '脾气', pinyin: 'píqi', meaning: 'temper; personality', bangla: 'মেজাজ', level: '3', favorite: false },
+
+                    { id: 591, character: '篇', pinyin: 'piān', meaning: 'sheet (of paper); article', bangla: 'পাতা; প্রবন্ধ', level: '3', favorite: false },
+
+                    { id: 592, character: '便宜', pinyin: 'piányí', meaning: 'cheap; inexpensive', bangla: 'সস্তা', level: '3', favorite: false },
+
+                    { id: 593, character: '骗', pinyin: 'piàn', meaning: 'cheat; deceive', bangla: 'প্রতারণা করা', level: '3', favorite: false },
+
+                    { id: 594, character: '乒乓球', pinyin: 'pīngpāngqiú', meaning: 'table tennis; ping-pong', bangla: 'টেবিল টেনিস', level: '3', favorite: false },
+
+                    { id: 595, character: '苹果', pinyin: 'píngguǒ', meaning: 'apple', bangla: 'আপেল', level: '3', favorite: false },
+
+                    { id: 596, character: '评论', pinyin: 'pínglùn', meaning: 'comment; review; criticize', bangla: 'মন্তব্য; পর্যালোচনা', level: '3', favorite: false },
+
+                    { id: 597, character: '瓶', pinyin: 'píng', meaning: 'bottle; container', bangla: 'বোতল', level: '3', favorite: false },
+
+                    { id: 598, character: '破', pinyin: 'pò', meaning: 'broken; damaged; tear', bangla: 'ভাঙা; ছিঁড়া', level: '3', favorite: false },
+
+                    { id: 599, character: '葡萄', pinyin: 'pútáo', meaning: 'grape', bangla: 'আঙ্গুর', level: '3', favorite: false },
+
+                    { id: 600, character: '普遍', pinyin: 'pǔbiàn', meaning: 'universal; widespread', bangla: 'সর্বব্যাপী', level: '3', favorite: false },
                     
                     // HSK Level 4 words with Bangla meanings
                     { id: 301, character: '爱情', pinyin: 'àiqíng', meaning: 'romantic love', bangla: 'রোমান্টিক ভালবাসা', level: '4', favorite: false },
