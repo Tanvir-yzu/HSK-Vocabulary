@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSK Vocabulary - Fixed Speech Function</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+        
+        .level-badge {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .pinyin {
+            color: #6b7280;
+            font-style: italic;
+            font-weight: 400;
+        }
+        
+        .character {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e40af, #3730a3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .bangla {
+            font-family: 'SolaimanLipi', 'Siyam Rupali', Arial, sans-serif;
+            color: #059669;
+            font-weight: 500;
+        }
+        
+        .language-toggle {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 4px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .language-btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .language-btn.active {
+            background: rgba(255, 255, 255, 0.95);
+            color: #1e40af;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-input {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            background: white;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .floating-action {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .floating-action:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.6);
+        }
+        
+        .speech-btn.active {
+            color: #3b82f6;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            color: white;
+            font-weight: 500;
+            z-index: 1001;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+        
+        .notification.error {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+    <div x-data="vocabApp()" x-init="init()" class="min-h-screen">
+        <!-- Notification -->
+        <div x-show="showNotification" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="transform translate-x-full"
+             x-transition:enter-end="transform translate-x-0"
+             x-transition:leave="transition ease-in duration-300"
+             x-transition:leave-start="transform translate-x-0"
+             x-transition:leave-end="transform translate-x-full"
+             :class="notificationType === 'success' ? 'notification success' : 'notification error'"
+             x-text="notificationMessage"
+             @click="showNotification = false"
+             class="cursor-pointer">
+        </div>
+
+        <!-- Floating Action Button -->
+        <button 
+            @click="scrollToTop()" 
+            class="floating-action animate-float"
+            title="Scroll to top"
+        >
+            <i class="fas fa-chevron-up text-xl"></i>
+        </button>
+
+        <!-- Header -->
+        <header class="gradient-bg text-white shadow-2xl relative overflow-hidden">
+            <div class="absolute inset-0 bg-black opacity-5"></div>
+            <div class="container mx-auto px-4 py-8 relative">
+                <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+                    <div class="text-center lg:text-left">
+                        <h1 class="text-4xl lg:text-5xl font-bold mb-3 animate-float">HSK Vocabulary</h1>
+                        <p class="text-blue-100 text-lg opacity-90">汉语水平考试词汇 - বাংলা অর্থ সহ</p>
+                        <div class="flex items-center gap-2 mt-4 justify-center lg:justify-start">
+                            <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                            <span class="text-sm opacity-80" x-text="`${vocab.length} words available`"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col gap-4 w-full lg:w-auto">
+                        <!-- Language Toggle -->
+                        <div class="language-toggle flex mx-auto lg:mx-0">
+                            <button 
+                                @click="currentLanguage = 'english'"
+                                :class="currentLanguage === 'english' ? 'language-btn active' : 'language-btn text-white opacity-80 hover:opacity-100'"
+                            >
+                                <i class="fas fa-globe mr-2"></i>English
+                            </button>
+                            <button 
+                                @click="currentLanguage = 'bangla'"
+                                :class="currentLanguage === 'bangla' ? 'language-btn active' : 'language-btn text-white opacity-80 hover:opacity-100'"
+                            >
+                                <i class="fas fa-language mr-2"></i>বাংলা
+                            </button>
+                        </div>
+                        
+                        <!-- Search -->
+                        <div class="relative w-full lg:w-80">
+                            <input 
+                                x-model="searchTerm" 
+                                @input="debouncedSearch()" 
+                                type="text" 
+                                :placeholder="currentLanguage === 'english' ? 'Search vocabulary...' : 'শব্দভান্ডার খুঁজুন...'" 
+                                class="search-input w-full px-5 py-3 rounded-2xl text-gray-800 focus:outline-none"
+                            >
+                            <i class="fas fa-search absolute right-4 top-3.5 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8">
+            <!-- Level Filter -->
+            <div class="mb-8 stat-card p-6">
+                <h3 class="font-semibold text-gray-700 mb-4 text-lg" x-text="currentLanguage === 'english' ? 'Filter by HSK Level:' : 'HSK লেভেল অনুযায়ী ফিল্টার:'"></h3>
+                <div class="flex flex-wrap gap-3">
+                    <button 
+                        @click="setLevel('all')" 
+                        :class="currentLevel === 'all' ? 'filter-btn bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg' : 'filter-btn bg-white text-gray-700 border-gray-200'"
+                    >
+                        <i class="fas fa-layer-group mr-2"></i>
+                        <span x-text="currentLanguage === 'english' ? 'All Levels' : 'সব লেভেল'"></span>
+                    </button>
+                    <button 
+                        @click="setLevel('1')" 
+                        :class="currentLevel === '1' ? 'filter-btn bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg' : 'filter-btn bg-white text-gray-700 border-gray-200'"
+                    >
+                        <i class="fas fa-seedling mr-2"></i>HSK 1
+                    </button>
+                    <button 
+                        @click="setLevel('2')" 
+                        :class="currentLevel === '2' ? 'filter-btn bg-gradient-to-r from-yellow-500 to-yellow-600 text-white shadow-lg' : 'filter-btn bg-white text-gray-700 border-gray-200'"
+                    >
+                        <i class="fas fa-leaf mr-2"></i>HSK 2
+                    </button>
+                    <button 
+                        @click="setLevel('3')" 
+                        :class="currentLevel === '3' ? 'filter-btn bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg' : 'filter-btn bg-white text-gray-700 border-gray-200'"
+                    >
+                        <i class="fas fa-tree mr-2"></i>HSK 3
+                    </button>
+                    <button 
+                        @click="setLevel('4')" 
+                        :class="currentLevel === '4' ? 'filter-btn bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-lg' : 'filter-btn bg-white text-gray-700 border-gray-200'"
+                    >
+                        <i class="fas fa-gem mr-2"></i>HSK 4
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-8">
+                <div class="stat-card p-5 text-center fade-in stagger-delay">
+                    <div class="text-3xl font-bold text-blue-600 mb-2" x-text="vocab.length"></div>
+                    <div class="text-gray-600 font-medium" x-text="currentLanguage === 'english' ? 'Total Words' : 'মোট শব্দ'"></div>
+                    <div class="w-12 h-1 bg-blue-200 rounded-full mx-auto mt-2"></div>
+                </div>
+                <div class="stat-card p-5 text-center fade-in stagger-delay">
+                    <div class="text-3xl font-bold text-green-600 mb-2" x-text="favoriteCount"></div>
+                    <div class="text-gray-600 font-medium" x-text="currentLanguage === 'english' ? 'Favorites' : 'পছন্দসমূহ'"></div>
+                    <div class="w-12 h-1 bg-green-200 rounded-full mx-auto mt-2"></div>
+                </div>
+                <div class="stat-card p-5 text-center fade-in stagger-delay">
+                    <div class="text-3xl font-bold text-purple-600 mb-2" x-text="filteredVocab.length"></div>
+                    <div class="text-gray-600 font-medium" x-text="currentLanguage === 'english' ? 'Showing' : 'দেখানো হচ্ছে'"></div>
+                    <div class="w-12 h-1 bg-purple-200 rounded-full mx-auto mt-2"></div>
+                </div>
+                <div class="stat-card p-5 text-center fade-in stagger-delay">
+                    <div class="text-3xl font-bold text-red-600 mb-2" x-text="getLevelCount(currentLevel)"></div>
+                    <div class="text-gray-600 font-medium" x-text="currentLevel === 'all' ? (currentLanguage === 'english' ? 'All Levels' : 'সব লেভেল') : 'HSK ' + currentLevel"></div>
+                    <div class="w-12 h-1 bg-red-200 rounded-full mx-auto mt-2"></div>
+                </div>
+            </div>
+
+            <!-- Vocabulary Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <template x-for="(word, index) in filteredVocab" :key="word.id">
+                    <div 
+                        class="card-hover rounded-2xl overflow-hidden fade-in" 
+                        :style="`animation-delay: ${index * 0.1}s`"
+                    >
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="character" x-text="word.character"></span>
+                                <span 
+                                    x-text="'HSK ' + word.level" 
+                                    :class="{
+                                        'bg-green-100 text-green-800 border border-green-200': word.level === '1',
+                                        'bg-yellow-100 text-yellow-800 border border-yellow-200': word.level === '2',
+                                        'bg-red-100 text-red-800 border border-red-200': word.level === '3',
+                                        'bg-purple-100 text-purple-800 border border-purple-200': word.level === '4'
+                                    }"
+                                    class="level-badge font-semibold"
+                                ></span>
+                            </div>
+                            <div class="pinyin mb-3 text-sm" x-text="word.pinyin"></div>
+                            <div class="text-gray-800 mb-2 font-medium leading-relaxed" x-text="currentLanguage === 'english' ? word.meaning : word.bangla"></div>
+                            <div class="bangla mb-4 text-sm" x-show="currentLanguage === 'english'" x-text="word.bangla"></div>
+                            <div class="flex justify-between items-center text-sm text-gray-500 pt-3 border-t border-gray-100">
+                                <span class="text-xs opacity-70" x-text="'#' + word.id"></span>
+                                <div class="flex gap-3">
+                                    <button 
+                                        @click="toggleFavorite(word.id)"
+                                        class="transition-all duration-300 transform hover:scale-110"
+                                        :class="word.favorite ? 'text-red-500' : 'text-gray-400 hover:text-red-400'"
+                                        :title="currentLanguage === 'english' ? (word.favorite ? 'Remove from favorites' : 'Add to favorites') : (word.favorite ? 'পছন্দ থেকে সরান' : 'পছন্দে যোগ করুন')"
+                                    >
+                                        <i :class="word.favorite ? 'fas fa-heart' : 'far fa-heart'"></i>
+                                    </button>
+                                    <button 
+                                        @click="speakWord(word)"
+                                        :class="speakingWordId === word.id ? 'speech-btn active text-blue-500' : 'text-gray-400 hover:text-blue-500'"
+                                        class="transition-all duration-300 transform hover:scale-110"
+                                        :title="currentLanguage === 'english' ? 'Listen pronunciation' : 'উচ্চারণ শুনুন'"
+                                    >
+                                        <i :class="speakingWordId === word.id ? 'fas fa-volume-up' : 'fas fa-volume-up'"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Empty State -->
+            <div x-show="filteredVocab.length === 0" class="text-center py-16 fade-in">
+                <div class="max-w-md mx-auto">
+                    <div class="w-24 h-24 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-search text-3xl text-gray-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2" x-text="currentLanguage === 'english' ? 'No vocabulary found' : 'কোন শব্দভান্ডার পাওয়া যায়নি'"></h3>
+                    <p class="text-gray-400" x-text="currentLanguage === 'english' ? 'Try adjusting your search or filter' : 'আপনার অনুসন্ধান বা ফিল্টার সামঞ্জস্য করুন'"></p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-12 mt-16">
+            <div class="container mx-auto px-4 text-center">
+                <div class="max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-4">HSK Vocabulary Platform</h3>
+                    <p class="text-gray-300 mb-6" x-text="currentLanguage === 'english' ? 'Master Chinese with our comprehensive HSK vocabulary learning platform' : 'আমাদের সম্পূর্ণ HSK শব্দভান্ডার লার্নিং প্ল্যাটফর্ম দিয়ে চীনা ভাষা আয়ত্ত করুন'"></p>
+                    <div class="flex justify-center gap-4 mb-6">
+                        <button class="p-2 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors">
+                            <i class="fab fa-github"></i>
+                        </button>
+                        <button class="p-2 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button class="p-2 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-400 text-sm">&copy; 2025 HSK Vocabulary Learning Platform. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function vocabApp() {
+            return {
+                vocab: [
+                    // HSK Level 1 words with Bangla meanings
+                    { id: 1, character: '爱', pinyin: 'ài', meaning: 'love / to love', bangla: 'ভালবাসা / ভালোবাসা', level: '1', favorite: false },
+                    { id: 2, character: '吧', pinyin: 'ba', meaning: '(modal particle)', bangla: '(সুপারিশ বা নরম স্বরের জন্য)', level: '1', favorite: false },
+                    { id: 3, character: '八', pinyin: 'bā', meaning: 'eight', bangla: 'আট', level: '1', favorite: false },
+                    { id: 4, character: '爸爸', pinyin: 'bà ba', meaning: 'father / dad', bangla: 'বাবা', level: '1', favorite: false },
+                    { id: 5, character: '百', pinyin: 'bǎi', meaning: 'hundred', bangla: 'একশো', level: '1', favorite: false },
+                    { id: 6, character: '白天', pinyin: 'bái tiān', meaning: 'daytime', bangla: 'দিনের বেলা', level: '1', favorite: false },
+                    { id: 7, character: '半', pinyin: 'bàn', meaning: 'half', bangla: 'অর্ধেক', level: '1', favorite: false },
+                    { id: 8, character: '包子', pinyin: 'bāo zi', meaning: 'steamed bun', bangla: 'স্টিমড বান (বাওজি)', level: '1', favorite: false },
+                    { id: 9, character: '杯子', pinyin: 'bēi zi', meaning: 'cup / glass', bangla: 'কাপ / গ্লাস', level: '1', favorite: false },
+                    { id: 10, character: '本', pinyin: 'běn', meaning: '(classifier for books)', bangla: '(বইয়ের জন্য শ্রেণিবাচক)', level: '1', favorite: false },
+                    { id: 11, character: '边', pinyin: 'biān', meaning: 'side / edge', bangla: 'পাশ / প্রান্ত', level: '1', favorite: false },
+                    { id: 12, character: '病', pinyin: 'bìng', meaning: 'illness / to be sick', bangla: 'অসুস্থতা / অসুস্থ হওয়া', level: '1', favorite: false },
+                    { id: 13, character: '不', pinyin: 'bù', meaning: 'not / no', bangla: 'না / না (অস্বীকৃতি)', level: '1', favorite: false },
+                    { id: 14, character: '不客气', pinyin: 'bú kè qi', meaning: "you're welcome", bangla: 'অনুগ্রহ করা হলো', level: '1', favorite: false },
+                    { id: 15, character: '不要', pinyin: 'bú yào', meaning: 'do not / don’t want', bangla: 'করবেন না / চাই না', level: '1', favorite: false },
+                    { id: 16, character: '菜', pinyin: 'cài', meaning: 'dish / vegetable', bangla: 'খাবার / সবজি', level: '1', favorite: false },
+                    { id: 17, character: '茶', pinyin: 'chá', meaning: 'tea', bangla: 'চা', level: '1', favorite: false },
+                    { id: 18, character: '唱', pinyin: 'chàng', meaning: 'to sing', bangla: 'গান গাওয়া', level: '1', favorite: false },
+                    { id: 19, character: '超市', pinyin: 'chāo shì', meaning: 'supermarket', bangla: 'সুপারমার্কেট', level: '1', favorite: false },
+                    { id: 20, character: '车', pinyin: 'chē', meaning: 'car / vehicle', bangla: 'গাড়ি / যানবাহন', level: '1', favorite: false },
+                    { id: 21, character: '吃', pinyin: 'chī', meaning: 'to eat', bangla: 'খাওয়া', level: '1', favorite: false },
+                    { id: 22, character: '穿', pinyin: 'chuān', meaning: 'to wear', bangla: 'পরা', level: '1', favorite: false },
+                    { id: 23, character: '出租车', pinyin: 'chū zū chē', meaning: 'taxi', bangla: 'ট্যাক্সি', level: '1', favorite: false },
+                    { id: 24, character: '大', pinyin: 'dà', meaning: 'big / large', bangla: 'বড়', level: '1', favorite: false },
+                    { id: 25, character: '打电话', pinyin: 'dǎ diàn huà', meaning: 'to make a phone call', bangla: 'ফোন করা', level: '1', favorite: false },
+                    { id: 26, character: '大家', pinyin: 'dà jiā', meaning: 'everyone / all', bangla: 'সবাই', level: '1', favorite: false },
+                    { id: 27, character: '到', pinyin: 'dào', meaning: 'to arrive / to reach', bangla: 'পৌঁছানো / যাওয়া', level: '1', favorite: false },
+                    { id: 28, character: '大学', pinyin: 'dà xué', meaning: 'university', bangla: 'বিশ্ববিদ্যালয়', level: '1', favorite: false },
+                    { id: 29, character: '大学生', pinyin: 'dà xué shēng', meaning: 'university student', bangla: 'বিশ্ববিদ্যালয়ের শিক্ষার্থী', level: '1', favorite: false },
+                    { id: 30, character: '的', pinyin: 'de', meaning: '(possessive particle)', bangla: '(সম্পর্কবাচক ব্যঞ্জনবর্ণ)', level: '1', favorite: false },
+                    { id: 31, character: '第', pinyin: 'dì', meaning: '(ordinal prefix)', bangla: '(ক্রমিক বিভক্তি)', level: '1', favorite: false },
+                    { id: 32, character: '店', pinyin: 'diàn', meaning: 'shop / store', bangla: 'দোকান', level: '1', favorite: false },
+                    { id: 33, character: '点', pinyin: 'diǎn', meaning: 'o’clock / point / dot', bangla: 'ঘন্টা / বিন্দু / স্থান', level: '1', favorite: false },
+                    { id: 34, character: '电话', pinyin: 'diàn huà', meaning: 'telephone', bangla: 'ফোন', level: '1', favorite: false },
+                    { id: 35, character: '电脑', pinyin: 'diàn nǎo', meaning: 'computer', bangla: 'কম্পিউটার', level: '1', favorite: false },
+                    { id: 36, character: '电视', pinyin: 'diàn shì', meaning: 'television', bangla: 'টেলিভিশন', level: '1', favorite: false },
+                    { id: 37, character: '电影', pinyin: 'diàn yǐng', meaning: 'movie / film', bangla: 'সিনেমা / চলচ্চিত্র', level: '1', favorite: false },
+                    { id: 38, character: '电影院', pinyin: 'diàn yǐng yuàn', meaning: 'cinema', bangla: 'সিনেমা হল', level: '1', favorite: false },
+                    { id: 39, character: '弟弟', pinyin: 'dì di', meaning: 'younger brother', bangla: 'ছোট ভাই', level: '1', favorite: false },
+                    { id: 40, character: '东西', pinyin: 'dōng xi', meaning: 'thing / stuff', bangla: 'জিনিস', level: '1', favorite: false },
+                    { id: 41, character: '都', pinyin: 'dōu', meaning: 'all / both', bangla: 'সব / উভয়', level: '1', favorite: false },
+                    { id: 42, character: '读', pinyin: 'dú', meaning: 'to read', bangla: 'পড়া', level: '1', favorite: false },
+                    { id: 43, character: '对', pinyin: 'duì', meaning: 'right / correct / towards', bangla: 'সঠিক / কথা / দিকে', level: '1', favorite: false },
+                    { id: 44, character: '对不起', pinyin: 'duì bu qǐ', meaning: "I'm sorry / excuse me", bangla: 'মাফ করুন / ক্ষমা চাইছি', level: '1', favorite: false },
+                    { id: 45, character: '多', pinyin: 'duō', meaning: 'many / much', bangla: 'অনেক', level: '1', favorite: false },
+                    { id: 46, character: '多少', pinyin: 'duō shǎo', meaning: 'how many / how much', bangla: 'কত', level: '1', favorite: false },
+                    { id: 47, character: '读书', pinyin: 'dú shū', meaning: 'to study / to read (books)', bangla: 'পড়াশোনা / বই পড়া', level: '1', favorite: false },
+                    { id: 48, character: '二', pinyin: 'èr', meaning: 'two', bangla: 'দুই', level: '1', favorite: false },
+                    { id: 49, character: '儿子', pinyin: 'ér zi', meaning: 'son', bangla: 'ছেলে', level: '1', favorite: false },
+                    { id: 50, character: '饭', pinyin: 'fàn', meaning: 'meal / cooked rice', bangla: 'খাবার / রান্না করা চাল', level: '1', favorite: false },
+                    { id: 51, character: '饭店', pinyin: 'fàn diàn', meaning: 'restaurant', bangla: 'রেস্টুরেন্ট', level: '1', favorite: false },
+                    { id: 52, character: '房间', pinyin: 'fáng jiān', meaning: 'room', bangla: 'ঘর', level: '1', favorite: false },
+                    { id: 53, character: '非常', pinyin: 'fēi cháng', meaning: 'very / extremely', bangla: 'খুব', level: '1', favorite: false },
+                    { id: 54, character: '飞机', pinyin: 'fēi jī', meaning: 'airplane / plane', bangla: 'বিমান', level: '1', favorite: false },
+                    { id: 55, character: '分', pinyin: 'fēn', meaning: 'minute / to divide', bangla: 'মিনিট / বিভাজন', level: '1', favorite: false },
+                    { id: 56, character: '分钟', pinyin: 'fēn zhōng', meaning: 'minute', bangla: 'মিনিট', level: '1', favorite: false },
+                    { id: 57, character: '高兴', pinyin: 'gāo xìng', meaning: 'happy / glad', bangla: 'খুশি / আনন্দিত', level: '1', favorite: false },
+                    { id: 58, character: '个', pinyin: 'gè', meaning: '(general classifier)', bangla: '(সাধারণ শ্রেণিবাচক)', level: '1', favorite: false },
+                    { id: 59, character: '歌', pinyin: 'gē', meaning: 'song', bangla: 'গান', level: '1', favorite: false },
+                    { id: 60, character: '哥哥', pinyin: 'gē ge', meaning: 'elder brother', bangla: 'বড় ভাই', level: '1', favorite: false },
+                    { id: 61, character: '给', pinyin: 'gěi', meaning: 'to give', bangla: 'দেওয়া', level: '1', favorite: false },
+                    { id: 62, character: '公司', pinyin: 'gōng sī', meaning: 'company', bangla: 'কোম্পানি', level: '1', favorite: false },
+                    { id: 63, character: '工作', pinyin: 'gōng zuò', meaning: 'work / job', bangla: 'কাজ / চাকরি', level: '1', favorite: false },
+                    { id: 64, character: '狗', pinyin: 'gǒu', meaning: 'dog', bangla: 'কুকুর', level: '1', favorite: false },
+                    { id: 65, character: '贵', pinyin: 'guì', meaning: 'expensive', bangla: 'দামী', level: '1', favorite: false },
+                    { id: 66, character: '国', pinyin: 'guó', meaning: 'country / nation', bangla: 'দেশ', level: '1', favorite: false },
+                    { id: 67, character: '还', pinyin: 'hái', meaning: 'still / yet / also', bangla: 'এখনও / শুরু করা হয়নি / আবার', level: '1', favorite: false },
+                    { id: 68, character: '孩子', pinyin: 'hái zi', meaning: 'child', bangla: 'শিশু', level: '1', favorite: false },
+                    { id: 69, character: '汉语', pinyin: 'Hànyǔ', meaning: 'Chinese language', bangla: 'চীনা ভাষা', level: '1', favorite: false },
+                    { id: 70, character: '汉字', pinyin: 'Hànzì', meaning: 'Chinese character', bangla: 'চীনা লিপি', level: '1', favorite: false },
+                    { id: 71, character: '号', pinyin: 'hào', meaning: 'number / date / sign', bangla: 'সংখ্যা / তারিখ / নাম / সংকেত', level: '1', favorite: false },
+                    { id: 72, character: '好', pinyin: 'hǎo', meaning: 'good / well', bangla: 'ভাল', level: '1', favorite: false },
+                    { id: 73, character: '好吃', pinyin: 'hǎo chī', meaning: 'tasty / delicious', bangla: 'সুস্বাদু', level: '1', favorite: false },
+                    { id: 74, character: '好看', pinyin: 'hǎo kàn', meaning: 'good-looking / attractive', bangla: 'সুন্দর / আকর্ষণীয়', level: '1', favorite: false },
+                    { id: 75, character: '好听', pinyin: 'hǎo tīng', meaning: 'pleasant to hear', bangla: 'শ্রবণযোগ্য', level: '1', favorite: false },
+                    { id: 76, character: '好玩儿', pinyin: 'hǎo wánr', meaning: 'fun / interesting', bangla: 'মজার / মজবুত', level: '1', favorite: false },
+                    { id: 77, character: '和', pinyin: 'hé', meaning: 'and / with', bangla: 'এবং', level: '1', favorite: false },
+                    { id: 78, character: '喝', pinyin: 'hē', meaning: 'to drink', bangla: 'পান করা', level: '1', favorite: false },
+                    { id: 79, character: '很', pinyin: 'hěn', meaning: 'very', bangla: 'খুব', level: '1', favorite: false },
+                    { id: 80, character: '后', pinyin: 'hòu', meaning: 'behind / after', bangla: 'পিছনে / পরে', level: '1', favorite: false },
+                    { id: 81, character: '回', pinyin: 'huí', meaning: 'to return / back', bangla: 'ফিরে আসা / পেছনে', level: '1', favorite: false },
+                    { id: 82, character: '会', pinyin: 'huì', meaning: 'can / will / meeting', bangla: 'করতে পারে / হবে / সভা', level: '1', favorite: false },
+                    { id: 83, character: '火车', pinyin: 'huǒ chē', meaning: 'train', bangla: 'ট্রেন', level: '1', favorite: false },
+                    { id: 84, character: '几', pinyin: 'jǐ', meaning: 'how many / several', bangla: 'কত / কয়েক', level: '1', favorite: false },
+                    { id: 85, character: '家', pinyin: 'jiā', meaning: 'home / family', bangla: 'বাড়ি / পরিবার', level: '1', favorite: false },
+                    { id: 86, character: '见', pinyin: 'jiàn', meaning: 'to see / to meet', bangla: 'দেখা / দেখা করা', level: '1', favorite: false },
+                    { id: 87, character: '件', pinyin: 'jiàn', meaning: '(classifier for clothing, events)', bangla: '(পোশাক, ঘটনার শ্রেণিবাচক)', level: '1', favorite: false },
+                    { id: 88, character: '叫', pinyin: 'jiào', meaning: 'to call / to shout', bangla: 'ডাকা / চিৎকার করা', level: '1', favorite: false },
+                    { id: 89, character: '饺子', pinyin: 'jiǎo zi', meaning: 'dumpling', bangla: 'ডাম্পলিং (জিয়াওজি)', level: '1', favorite: false },
+                    { id: 90, character: '家人', pinyin: 'jiā rén', meaning: 'family members', bangla: 'পরিবারের সদস্য', level: '1', favorite: false },
+                    { id: 91, character: '鸡蛋', pinyin: 'jī dàn', meaning: 'egg', bangla: 'ডিম', level: '1', favorite: false },
+                    { id: 92, character: '姐姐', pinyin: 'jiě jie', meaning: 'elder sister', bangla: 'বড় বোন', level: '1', favorite: false },
+                    { id: 93, character: '今年', pinyin: 'jīn nián', meaning: 'this year', bangla: 'এই বছর', level: '1', favorite: false },
+                    { id: 94, character: '今天', pinyin: 'jīn tiān', meaning: 'today', bangla: 'আজ', level: '1', favorite: false },
+                    { id: 95, character: '九', pinyin: 'jiǔ', meaning: 'nine', bangla: 'নয়', level: '1', favorite: false },
+                    { id: 96, character: '觉得', pinyin: 'jué de', meaning: 'to feel / to think', bangla: 'অনুভব করা / মনে করা', level: '1', favorite: false },
+                    { id: 97, character: '开', pinyin: 'kāi', meaning: 'to open / to drive', bangla: 'খোলা / চালানো', level: '1', favorite: false },
+                    { id: 98, character: '开车', pinyin: 'kāi chē', meaning: 'to drive a car', bangla: 'গাড়ি চালানো', level: '1', favorite: false },
+                    { id: 99, character: '看', pinyin: 'kàn', meaning: 'to look / to see', bangla: 'দেখা', level: '1', favorite: false },
+                    { id: 100, character: '看病', pinyin: 'kàn bìng', meaning: 'to see a doctor', bangla: 'ডাক্তার দেখানো', level: '1', favorite: false },
+                    { id: 101, character: '看见', pinyin: 'kàn jiàn', meaning: 'to see / to catch sight of', bangla: 'দেখতে পাওয়া / দৃষ্টিগোচর', level: '1', favorite: false },
+                    { id: 102, character: '课', pinyin: 'kè', meaning: 'class / lesson', bangla: 'ক্লাস / পাঠ', level: '1', favorite: false },
+                    { id: 103, character: '可以', pinyin: 'kěyǐ', meaning: 'can / may', bangla: 'পারা / অনুমতি', level: '1', favorite: false },
+                    { id: 104, character: '口', pinyin: 'kǒu', meaning: 'mouth / opening', bangla: 'মুখ / খোলা', level: '1', favorite: false },
+                    { id: 105, character: '块', pinyin: 'kuài', meaning: 'piece / (colloquial for yuan)', bangla: 'টুকরা / (ইউয়ান অর্থে)', level: '1', favorite: false },
+                    { id: 106, character: '来', pinyin: 'lái', meaning: 'to come', bangla: 'আসা', level: '1', favorite: false },
+                    { id: 107, character: '老师', pinyin: 'lǎo shī', meaning: 'teacher', bangla: 'শিক্ষক', level: '1', favorite: false },
+                    { id: 108, character: '了', pinyin: 'le', meaning: '(particle for completed action)', bangla: '(সম্পূর্ণ ক্রিয়ার ব্যঞ্জনবর্ণ)', level: '1', favorite: false },
+                    { id: 109, character: '冷', pinyin: 'lěng', meaning: 'cold', bangla: 'ঠান্ডা', level: '1', favorite: false },
+                    { id: 110, character: '里', pinyin: 'lǐ', meaning: 'inside / in', bangla: 'ভিতরে / মধ্যে', level: '1', favorite: false },
+                    { id: 111, character: '两', pinyin: 'liǎng', meaning: 'two (for measure words)', bangla: 'দুই (শ্রেণিবাচকের সাথে)', level: '1', favorite: false },
+                    { id: 112, character: '零', pinyin: 'líng', meaning: 'zero', bangla: 'শূন্য', level: '1', favorite: false },
+                    { id: 113, character: '六', pinyin: 'liù', meaning: 'six', bangla: 'ছয়', level: '1', favorite: false },
+                    { id: 114, character: '吗', pinyin: 'ma', meaning: '(question particle)', bangla: '(প্রশ্নবাচক)', level: '1', favorite: false },
+                    { id: 115, character: '卖', pinyin: 'mài', meaning: 'to sell', bangla: 'বিক্রি করা', level: '1', favorite: false },
+                    { id: 116, character: '买', pinyin: 'mǎi', meaning: 'to buy', bangla: 'কেনা', level: '1', favorite: false },
+                    { id: 117, character: '妈妈', pinyin: 'mā ma', meaning: 'mother / mom', bangla: 'মা', level: '1', favorite: false },
+                    { id: 118, character: '忙', pinyin: 'máng', meaning: 'busy', bangla: 'ব্যস্ত', level: '1', favorite: false },
+                    { id: 119, character: '猫', pinyin: 'māo', meaning: 'cat', bangla: 'বিড়াল', level: '1', favorite: false },
+                    { id: 120, character: '没关系', pinyin: 'méi guān xi', meaning: "it doesn't matter / never mind", bangla: 'কিছু হয়নি / চিন্তা করবেন না', level: '1', favorite: false },
+                    { id: 121, character: '妹妹', pinyin: 'mèi mei', meaning: 'younger sister', bangla: 'ছোট বোন', level: '1', favorite: false },
+                    { id: 122, character: '没事', pinyin: 'méi shì', meaning: "it's nothing / no problem", bangla: 'কিছু না / সমস্যা নেই', level: '1', favorite: false },
+                    { id: 123, character: '没有', pinyin: 'méi yǒu', meaning: 'to not have / there is not', bangla: 'নেই / নেই', level: '1', favorite: false },
+                    { id: 124, character: '们', pinyin: 'men', meaning: '(plural suffix for pronouns/people)', bangla: '(বহুবচন প্রত্যয়)', level: '1', favorite: false },
+                    { id: 125, character: '面包', pinyin: 'miàn bāo', meaning: 'bread', bangla: 'পাউরুটি', level: '1', favorite: false },
+                    { id: 126, character: '面条儿', pinyin: 'miàn tiáor', meaning: 'noodles', bangla: 'নুডুলস', level: '1', favorite: false },
+                    { id: 127, character: '米饭', pinyin: 'mǐ fàn', meaning: '(cooked) rice', bangla: '(রান্না করা) চাল / ভাত', level: '1', favorite: false },
+                    { id: 128, character: '明年', pinyin: 'míng nián', meaning: 'next year', bangla: 'আগামী বছর', level: '1', favorite: false },
+                    { id: 129, character: '明天', pinyin: 'míng tiān', meaning: 'tomorrow', bangla: 'আগামীকাল', level: '1', favorite: false },
+                    { id: 130, character: '名字', pinyin: 'míng zi', meaning: 'name', bangla: 'নাম', level: '1', favorite: false },
+                    { id: 131, character: '那', pinyin: 'nà', meaning: 'that', bangla: 'ওইটা / সেই', level: '1', favorite: false },
+                    { id: 132, character: '哪', pinyin: 'nǎ', meaning: 'which', bangla: 'কোনটি', level: '1', favorite: false },
+                    { id: 133, character: '那边', pinyin: 'nà biān', meaning: 'over there', bangla: 'ওই দিকে', level: '1', favorite: false },
+                    { id: 134, character: '哪儿', pinyin: 'nǎ er', meaning: 'where', bangla: 'কোথায়', level: '1', favorite: false },
+                    { id: 135, character: '那个', pinyin: 'nà ge', meaning: 'that one', bangla: 'ওইটা', level: '1', favorite: false },
+                    { id: 136, character: '哪个', pinyin: 'nǎ ge', meaning: 'which one', bangla: 'কোনটি', level: '1', favorite: false },
+                    { id: 137, character: '那里', pinyin: 'nà lǐ', meaning: 'there', bangla: 'সেখানে', level: '1', favorite: false },
+                    { id: 138, character: '哪里', pinyin: 'nǎ lǐ', meaning: 'where', bangla: 'কোথায়', level: '1', favorite: false },
+                    { id: 139, character: '男', pinyin: 'nán', meaning: 'male / man', bangla: 'পুরুষ / ছেলে', level: '1', favorite: false },
+                    { id: 140, character: '男朋友', pinyin: 'nán péngyou', meaning: 'boyfriend', bangla: 'প্রেমিক', level: '1', favorite: false },
+                    { id: 141, character: '那儿', pinyin: 'nàr', meaning: 'there', bangla: 'ওখানে', level: '1', favorite: false },
+                    { id: 142, character: '那些', pinyin: 'nà xiē', meaning: 'those', bangla: 'ওগুলো', level: '1', favorite: false },
+                    { id: 143, character: '哪些', pinyin: 'nǎ xiē', meaning: 'which ones', bangla: 'কোনগুলো', level: '1', favorite: false },
+                    { id: 144, character: '呢', pinyin: 'ne', meaning: '(particle for follow-up/questions)', bangla: '(প্রশ্ন বা অনুসরণের জন্য)', level: '1', favorite: false },
+                    { id: 145, character: '能', pinyin: 'néng', meaning: 'can / able to', bangla: 'পারা / সক্ষম', level: '1', favorite: false },
+                    { id: 146, character: '你', pinyin: 'nǐ', meaning: 'you (singular)', bangla: 'তুমি / আপনি', level: '1', favorite: false },
+                    { id: 147, character: '年', pinyin: 'nián', meaning: 'year', bangla: 'বছর', level: '1', favorite: false },
+                    { id: 148, character: '你好', pinyin: 'nǐ hǎo', meaning: 'hello', bangla: 'হ্যালো', level: '1', favorite: false },
+                    { id: 149, character: '你们', pinyin: 'nǐ men', meaning: 'you (plural)', bangla: 'তোমরা / আপনারা', level: '1', favorite: false },
+                    { id: 150, character: '您', pinyin: 'nín', meaning: 'you (polite)', bangla: 'আপনি (সম্মানসূচক)', level: '1', favorite: false },
+                    { id: 151, character: '牛奶', pinyin: 'niú nǎi', meaning: 'milk', bangla: 'দুধ', level: '1', favorite: false },
+                    { id: 152, character: '女', pinyin: 'nǚ', meaning: 'female / woman', bangla: 'মহিলা / মেয়ে', level: '1', favorite: false },
+                    { id: 153, character: '女儿', pinyin: 'nǚ ér', meaning: 'daughter', bangla: 'মেয়ে (সন্তান)', level: '1', favorite: false },
+                    { id: 154, character: '女朋友', pinyin: 'nǚ péngyou', meaning: 'girlfriend', bangla: 'প্রেমিকা', level: '1', favorite: false },
+                    { id: 155, character: '女士', pinyin: 'nǚ shì', meaning: 'lady / madam / Ms.', bangla: 'মহিলা / ম্যাডাম / জনাবা', level: '1', favorite: false },
+                    { id: 156, character: '朋友', pinyin: 'péng you', meaning: 'friend', bangla: 'বন্ধু', level: '1', favorite: false },
+                    { id: 157, character: '便宜', pinyin: 'pián yi', meaning: 'cheap', bangla: 'সস্তা', level: '1', favorite: false },
+                    { id: 158, character: '漂亮', pinyin: 'piào liang', meaning: 'pretty / beautiful', bangla: 'সুন্দর / সুন্দরী', level: '1', favorite: false },
+                    { id: 159, character: '苹果', pinyin: 'píng guǒ', meaning: 'apple', bangla: 'আপেল', level: '1', favorite: false },
+                    { id: 160, character: '七', pinyin: 'qī', meaning: 'seven', bangla: 'সাত', level: '1', favorite: false },
+                    { id: 161, character: '前', pinyin: 'qián', meaning: 'front / before / ago', bangla: 'সামনে / আগে / পূর্বে', level: '1', favorite: false },
+                    { id: 162, character: '钱', pinyin: 'qián', meaning: 'money', bangla: 'টাকা', level: '1', favorite: false },
+                    { id: 163, character: '千', pinyin: 'qiān', meaning: 'thousand', bangla: 'হাজার', level: '1', favorite: false },
+                    { id: 164, character: '起床', pinyin: 'qǐ chuáng', meaning: 'to get up / to get out of bed', bangla: 'ঘুম থেকে ওঠা', level: '1', favorite: false },
+                    { id: 165, character: '请', pinyin: 'qǐng', meaning: 'please / to invite', bangla: 'দয়া করে / আমন্ত্রণ করা', level: '1', favorite: false },
+                    { id: 166, character: '请问', pinyin: 'qǐng wèn', meaning: 'excuse me / may I ask...', bangla: 'মাফ করবেন / জিজ্ঞাসা করি...', level: '1', favorite: false },
+                    { id: 167, character: '去', pinyin: 'qù', meaning: 'to go', bangla: 'যাওয়া', level: '1', favorite: false },
+                    { id: 168, character: '去年', pinyin: 'qù nián', meaning: 'last year', bangla: 'গত বছর', level: '1', favorite: false },
+                    { id: 169, character: '热', pinyin: 'rè', meaning: 'hot', bangla: 'গরম', level: '1', favorite: false },
+                    { id: 170, character: '人', pinyin: 'rén', meaning: 'person / people', bangla: 'মানুষ', level: '1', favorite: false },
+                    { id: 171, character: '认识', pinyin: 'rèn shi', meaning: 'to know / to recognize', bangla: 'চেনা / জানা', level: '1', favorite: false },
+                    { id: 172, character: '日', pinyin: 'rì', meaning: 'sun / day / Japan', bangla: 'সূর্য / দিন / জাপান', level: '1', favorite: false },
+                    { id: 173, character: '三', pinyin: 'sān', meaning: 'three', bangla: 'তিন', level: '1', favorite: false },
+                    { id: 174, character: '上', pinyin: 'shàng', meaning: 'up / on / above / to go up', bangla: 'উপরে / উপর / ওপর / ওঠা', level: '1', favorite: false },
+                    { id: 175, character: '上班', pinyin: 'shàng bān', meaning: 'to go to work / to be on duty', bangla: 'কাজে যাওয়া / ডিউটিতে থাকা', level: '1', favorite: false },
+                    { id: 176, character: '商店', pinyin: 'shāng diàn', meaning: 'shop / store', bangla: 'দোকান', level: '1', favorite: false },
+                    { id: 177, character: '上课', pinyin: 'shàng kè', meaning: 'to attend class / to have class', bangla: 'ক্লাসে যাওয়া / ক্লাস নেওয়া', level: '1', favorite: false },
+                    { id: 178, character: '上午', pinyin: 'shàng wǔ', meaning: 'morning', bangla: 'সকাল', level: '1', favorite: false },
+                    { id: 179, character: '上学', pinyin: 'shàng xué', meaning: 'to go to school', bangla: 'স্কুলে যাওয়া', level: '1', favorite: false },
+                    { id: 180, character: '少', pinyin: 'shǎo', meaning: 'few / little / to be less', bangla: 'অল্প / কম / কম হওয়া', level: '1', favorite: false },
+                    { id: 181, character: '谁', pinyin: 'shéi', meaning: 'who', bangla: 'কে', level: '1', favorite: false },
+                    { id: 182, character: '生病', pinyin: 'shēng bìng', meaning: 'to fall ill / to get sick', bangla: 'অসুস্থ হওয়া', level: '1', favorite: false },
+                    { id: 183, character: '什么', pinyin: 'shén me', meaning: 'what', bangla: 'কী', level: '1', favorite: false },
+                    { id: 184, character: '十', pinyin: 'shí', meaning: 'ten', bangla: 'দশ', level: '1', favorite: false },
+                    { id: 185, character: '是', pinyin: 'shì', meaning: 'to be', bangla: 'হওয়া', level: '1', favorite: false },
+                    { id: 186, character: '事', pinyin: 'shì', meaning: 'matter / affair / thing', bangla: 'বিষয় / ঘটনা / জিনিস', level: '1', favorite: false },
+                    { id: 187, character: '时候', pinyin: 'shí hou', meaning: 'time / moment', bangla: 'সময় / মুহূর্ত', level: '1', favorite: false },
+                    { id: 188, character: '时间', pinyin: 'shí jiān', meaning: 'time', bangla: 'সময়', level: '1', favorite: false },
+                    { id: 189, character: '手机', pinyin: 'shǒu jī', meaning: 'mobile phone / cell phone', bangla: 'মোবাইল ফোন', level: '1', favorite: false },
+                    { id: 190, character: '书', pinyin: 'shū', meaning: 'book', bangla: 'বই', level: '1', favorite: false },
+                    { id: 191, character: '书店', pinyin: 'shū diàn', meaning: 'bookstore', bangla: 'বইয়ের দোকান', level: '1', favorite: false },
+                    { id: 192, character: '睡', pinyin: 'shuì', meaning: 'to sleep', bangla: 'ঘুমানো', level: '1', favorite: false },
+                    { id: 193, character: '水', pinyin: 'shuǐ', meaning: 'water', bangla: 'পানি', level: '1', favorite: false },
+                    { id: 194, character: '水果', pinyin: 'shuǐ guǒ', meaning: 'fruit', bangla: 'ফল', level: '1', favorite: false },
+                    { id: 195, character: '睡觉', pinyin: 'shuì jiào', meaning: 'to sleep / to go to bed', bangla: 'ঘুমাতে যাওয়া', level: '1', favorite: false },
+                    { id: 196, character: '说', pinyin: 'shuō', meaning: 'to say / to speak', bangla: 'বলা', level: '1', favorite: false },
+                    { id: 197, character: '说话', pinyin: 'shuō huà', meaning: 'to talk / to speak', bangla: 'কথা বলা', level: '1', favorite: false },
+                    { id: 198, character: '四', pinyin: 'sì', meaning: 'four', bangla: 'চার', level: '1', favorite: false },
+                    { id: 199, character: '岁', pinyin: 'suì', meaning: 'year (of age)', bangla: 'বছর (বয়স)', level: '1', favorite: false },
+                    { id: 200, character: '他', pinyin: 'tā', meaning: 'he / him', bangla: 'সে (পুরুষ) / তাকে', level: '1', favorite: false },
+                    { id: 201, character: '它', pinyin: 'tā', meaning: 'it', bangla: 'এটি (প্রাণীহীন/প্রাণী)', level: '1', favorite: false },
+                    { id: 202, character: '她', pinyin: 'tā', meaning: 'she / her', bangla: 'সে (মহিলা) / তাকে', level: '1', favorite: false },
+                    { id: 203, character: '太', pinyin: 'tài', meaning: 'too / extremely', bangla: 'খুব / অত্যন্ত', level: '1', favorite: false },
+                    { id: 204, character: '她们', pinyin: 'tā men', meaning: 'they / them (female)', bangla: 'তারা / তাদের (মহিলা)', level: '1', favorite: false },
+                    { id: 205, character: '它们', pinyin: 'tā men', meaning: 'they / them (inanimate/animals)', bangla: 'তারা / তাদের (প্রাণীহীন/প্রাণী)', level: '1', favorite: false },
+                    { id: 206, character: '他们', pinyin: 'tā men', meaning: 'they / them (male/mixed)', bangla: 'তারা / তাদের (পুরুষ/মিশ্র)', level: '1', favorite: false },
+                    { id: 207, character: '天', pinyin: 'tiān', meaning: 'day / sky', bangla: 'দিন / আকাশ', level: '1', favorite: false },
+                    { id: 208, character: '天气', pinyin: 'tiān qì', meaning: 'weather', bangla: 'আবহাওয়া', level: '1', favorite: false },
+                    { id: 209, character: '听', pinyin: 'tīng', meaning: 'to listen / to hear', bangla: 'শোনা', level: '1', favorite: false },
+                    { id: 210, character: '听见', pinyin: 'tīng jiàn', meaning: 'to hear', bangla: 'শুনতে পাওয়া', level: '1', favorite: false },
+                    { id: 211, character: '同学', pinyin: 'tóng xué', meaning: 'classmate / fellow student', bangla: 'সহপাঠী', level: '1', favorite: false },
+                    { id: 212, character: '外', pinyin: 'wài', meaning: 'outside / foreign', bangla: 'বাইরে / বিদেশী', level: '1', favorite: false },
+                    { id: 213, character: '外边', pinyin: 'wài biān', meaning: 'outside / exterior', bangla: 'বাইরে / বাহির', level: '1', favorite: false },
+                    { id: 214, character: '玩', pinyin: 'wán', meaning: 'to play / to have fun', bangla: 'খেলা করা / মজা করা', level: '1', favorite: false },
+                    { id: 215, character: '晚', pinyin: 'wǎn', meaning: 'late / evening', bangla: 'দেরি / সন্ধ্যা', level: '1', favorite: false },
+                    { id: 216, character: '晚饭', pinyin: 'wǎn fàn', meaning: 'dinner / supper', bangla: 'রাতের খাবার', level: '1', favorite: false },
+                    { id: 217, character: '晚上', pinyin: 'wǎn shang', meaning: 'evening / night', bangla: 'সন্ধ্যা / রাত', level: '1', favorite: false },
+                    { id: 218, character: '喂', pinyin: 'wèi', meaning: 'hello (on phone) / hey', bangla: 'হ্যালো (ফোনে) / আরে', level: '1', favorite: false },
+                    { id: 219, character: '问', pinyin: 'wèn', meaning: 'to ask', bangla: 'জিজ্ঞাসা করা', level: '1', favorite: false },
+                    { id: 220, character: '问题', pinyin: 'wèn tí', meaning: 'question / problem', bangla: 'প্রশ্ন / সমস্যা', level: '1', favorite: false },
+                    { id: 221, character: '我', pinyin: 'wǒ', meaning: 'I / me', bangla: 'আমি / আমাকে', level: '1', favorite: false },
+                    { id: 222, character: '我们', pinyin: 'wǒ men', meaning: 'we / us', bangla: 'আমরা / আমাদের', level: '1', favorite: false },
+                    { id: 223, character: '五', pinyin: 'wǔ', meaning: 'five', bangla: 'পাঁচ', level: '1', favorite: false },
+                    { id: 224, character: '午饭', pinyin: 'wǔ fàn', meaning: 'lunch', bangla: 'দুপুরের খাবার', level: '1', favorite: false },
+                    { id: 225, character: '下', pinyin: 'xià', meaning: 'down / under / next / to go down', bangla: 'নিচে / নীচে / পরবর্তী / নামা', level: '1', favorite: false },
+                    { id: 226, character: '下班', pinyin: 'xià bān', meaning: 'to get off work / to finish work', bangla: 'কাজ থেকে ফেরা / কাজ শেষ করা', level: '1', favorite: false },
+                    { id: 227, character: '下课', pinyin: 'xià kè', meaning: 'to finish class / to get out of class', bangla: 'ক্লাস শেষ করা / ক্লাস থেকে বেরোনো', level: '1', favorite: false },
+                    { id: 228, character: '想', pinyin: 'xiǎng', meaning: 'to think / to want to / to miss', bangla: 'ভাবা / ইচ্ছা করা / মিস করা', level: '1', favorite: false },
+                    { id: 229, character: '先生', pinyin: 'xiān sheng', meaning: 'Mr. / sir / husband', bangla: 'জনাব / স্বামী', level: '1', favorite: false },
+                    { id: 230, character: '现在', pinyin: 'xiàn zài', meaning: 'now', bangla: 'এখন', level: '1', favorite: false },
+                    { id: 231, character: '小', pinyin: 'xiǎo', meaning: 'small / little', bangla: 'ছোট', level: '1', favorite: false },
+                    { id: 232, character: '小朋友', pinyin: 'xiǎo péngyǒu', meaning: 'child / little friend', bangla: 'শিশু / ছোট বন্ধু', level: '1', favorite: false },
+                    { id: 233, character: '小时', pinyin: 'xiǎo shí', meaning: 'hour', bangla: 'ঘন্টা', level: '1', favorite: false },
+                    { id: 234, character: '小学', pinyin: 'xiǎo xué', meaning: 'elementary school', bangla: 'প্রাথমিক বিদ্যালয়', level: '1', favorite: false },
+                    { id: 235, character: '小学生', pinyin: 'xiǎo xué shēng', meaning: 'elementary school student', bangla: 'প্রাথমিক বিদ্যালয়ের ছাত্র', level: '1', favorite: false },
+                    { id: 236, character: '下午', pinyin: 'xià wǔ', meaning: 'afternoon', bangla: 'বিকাল', level: '1', favorite: false },
+                    { id: 237, character: '下雨', pinyin: 'xià yǔ', meaning: 'to rain', bangla: 'বৃষ্টি পড়া', level: '1', favorite: false },
+                    { id: 238, character: '写', pinyin: 'xiě', meaning: 'to write', bangla: 'লেখা', level: '1', favorite: false },
+                    { id: 239, character: '些', pinyin: 'xiē', meaning: 'some / a few', bangla: 'কিছু / কয়েকটি', level: '1', favorite: false },
+                    { id: 240, character: '谢谢', pinyin: 'xiè xie', meaning: 'thank you', bangla: 'ধন্যবাদ', level: '1', favorite: false },
+                    { id: 241, character: '喜欢', pinyin: 'xǐ huan', meaning: 'to like / to be fond of', bangla: 'পছন্দ করা', level: '1', favorite: false },
+                    { id: 242, character: '新', pinyin: 'xīn', meaning: 'new', bangla: 'নতুন', level: '1', favorite: false },
+                    { id: 243, character: '星期', pinyin: 'xīng qī', meaning: 'week', bangla: 'সপ্তাহ', level: '1', favorite: false },
+                    { id: 244, character: '星期日', pinyin: 'xīng qī rì', meaning: 'Sunday', bangla: 'রবিবার', level: '1', favorite: false },
+                    { id: 245, character: '星期天', pinyin: 'xīng qī tiān', meaning: 'Sunday', bangla: 'রবিবার', level: '1', favorite: false },
+                    { id: 246, character: '休息', pinyin: 'xiū xi', meaning: 'to rest / to take a break', bangla: 'বিশ্রাম নেওয়া', level: '1', favorite: false },
+                    { id: 247, character: '学', pinyin: 'xué', meaning: 'to study / to learn', bangla: 'পড়াশোনা করা / শেখা', level: '1', favorite: false },
+                    { id: 248, character: '雪', pinyin: 'xuě', meaning: 'snow', bangla: 'তুষার', level: '1', favorite: false },
+                    { id: 249, character: '学生', pinyin: 'xué sheng', meaning: 'student', bangla: 'ছাত্র', level: '1', favorite: false },
+                    { id: 250, character: '学习', pinyin: 'xué xí', meaning: 'to study / to learn', bangla: 'অধ্যয়ন করা / শেখা', level: '1', favorite: false },
+                    { id: 251, character: '学校', pinyin: 'xué xiào', meaning: 'school', bangla: 'স্কুল', level: '1', favorite: false },
+                    { id: 252, character: '要', pinyin: 'yào', meaning: 'to want / will / need', bangla: 'চাওয়া / ইচ্ছা / প্রয়োজন', level: '1', favorite: false },
+                    { id: 253, character: '也', pinyin: 'yě', meaning: 'also / too', bangla: 'ও / আরও', level: '1', favorite: false },
+                    { id: 254, character: '一', pinyin: 'yī', meaning: 'one', bangla: 'এক', level: '1', favorite: false },
+                    { id: 255, character: '一半', pinyin: 'yī bàn', meaning: 'half', bangla: 'অর্ধেক', level: '1', favorite: false },
+                    { id: 256, character: '一点儿', pinyin: 'yī diǎn er', meaning: 'a little / a bit', bangla: 'একটু / সামান্য', level: '1', favorite: false },
+                    { id: 257, character: '衣服', pinyin: 'yī fu', meaning: 'clothes / clothing', bangla: 'কাপড়', level: '1', favorite: false },
+                    { id: 258, character: '医生', pinyin: 'yī shēng', meaning: 'doctor', bangla: 'ডাক্তার', level: '1', favorite: false },
+                    { id: 259, character: '一下', pinyin: 'yī xià', meaning: '(brief action indicator)', bangla: '(একটু সময়ের ক্রিয়া নির্দেশক)', level: '1', favorite: false },
+                    { id: 260, character: '一些', pinyin: 'yì xiē', meaning: 'some / a few', bangla: 'কিছু / কয়েকটি', level: '1', favorite: false },
+                    { id: 261, character: '医院', pinyin: 'yī yuàn', meaning: 'hospital', bangla: 'হাসপাতাল', level: '1', favorite: false },
+                    { id: 262, character: '椅子', pinyin: 'yǐ zi', meaning: 'chair', bangla: 'চেয়ার', level: '1', favorite: false },
+                    { id: 263, character: '有', pinyin: 'yǒu', meaning: 'to have / there is', bangla: 'থাকা / আছে', level: '1', favorite: false },
+                    { id: 264, character: '有的', pinyin: 'yǒu de', meaning: 'some', bangla: 'কিছু', level: '1', favorite: false },
+                    { id: 265, character: '有点儿', pinyin: 'yǒu diǎnr', meaning: 'a little bit / somewhat', bangla: 'একটু / কিছুটা', level: '1', favorite: false },
+                    { id: 266, character: '有些', pinyin: 'yǒu xiē', meaning: 'some / a few', bangla: 'কিছু / কয়েকটি', level: '1', favorite: false },
+                    { id: 267, character: '雨', pinyin: 'yǔ', meaning: 'rain', bangla: 'বৃষ্টি', level: '1', favorite: false },
+                    { id: 268, character: '元', pinyin: 'yuán', meaning: 'yuan (Chinese currency)', bangla: 'ইউয়ান (চীনা মুদ্রা)', level: '1', favorite: false },
+                    { id: 269, character: '月', pinyin: 'yuè', meaning: 'month / moon', bangla: 'মাস / চাঁদ', level: '1', favorite: false },
+                    { id: 270, character: '在', pinyin: 'zài', meaning: 'at / in / on (indicates action in progress)', bangla: 'এ / তে / (চলমান ক্রিয়া নির্দেশক)', level: '1', favorite: false },
+                    { id: 271, character: '再', pinyin: 'zài', meaning: 'again / once more', bangla: 'আবার / আরেকবার', level: '1', favorite: false },
+                    { id: 272, character: '再见', pinyin: 'zài jiàn', meaning: 'goodbye', bangla: 'বিদায়', level: '1', favorite: false },
+                    { id: 273, character: '早', pinyin: 'zǎo', meaning: 'early / morning', bangla: 'সকাল / তাড়াতাড়ি', level: '1', favorite: false },
+                    { id: 274, character: '早饭', pinyin: 'zǎo fàn', meaning: 'breakfast', bangla: 'সকালের নাস্তা', level: '1', favorite: false },
+                    { id: 275, character: '早上', pinyin: 'zǎo shang', meaning: 'morning', bangla: 'সকাল', level: '1', favorite: false },
+                    { id: 276, character: '怎么', pinyin: 'zěn me', meaning: 'how / why', bangla: 'কিভাবে / কেন', level: '1', favorite: false },
+                    { id: 277, character: '怎么样', pinyin: 'zěn me yàng', meaning: 'how about / how is it?', bangla: 'কেমন / কেমন আছে?', level: '1', favorite: false },
+                    { id: 278, character: '找', pinyin: 'zhǎo', meaning: 'to look for / to find / to give change', bangla: 'খোঁজা / পাওয়া / খুচরা দেওয়া', level: '1', favorite: false },
+                    { id: 279, character: '这', pinyin: 'zhè', meaning: 'this', bangla: 'এই', level: '1', favorite: false },
+                    { id: 280, character: '这边', pinyin: 'zhè biān', meaning: 'this side / over here', bangla: 'এই দিকে / এখানে', level: '1', favorite: false },
+                    { id: 281, character: '这个', pinyin: 'zhè ge', meaning: 'this one', bangla: 'এইটা', level: '1', favorite: false },
+                    { id: 282, character: '这里', pinyin: 'zhè lǐ', meaning: 'here', bangla: 'এখানে', level: '1', favorite: false },
+                    { id: 283, character: '真', pinyin: 'zhēn', meaning: 'real / true / really', bangla: 'সত্যি / আসল / সত্যিই', level: '1', favorite: false },
+                    { id: 284, character: '正在', pinyin: 'zhèng zài', meaning: 'in the process of (doing)', bangla: '(কোনো কাজ) করার প্রক্রিয়ায়', level: '1', favorite: false },
+                    { id: 285, character: '这儿', pinyin: 'zhèr', meaning: 'here', bangla: 'এখানে', level: '1', favorite: false },
+                    { id: 286, character: '这些', pinyin: 'zhè xiē', meaning: 'these', bangla: 'এইগুলো', level: '1', favorite: false },
+                    { id: 287, character: '只', pinyin: 'zhǐ', meaning: 'only / merely', bangla: 'শুধুমাত্র', level: '1', favorite: false },
+                    { id: 288, character: '知道', pinyin: 'zhī dào', meaning: 'to know', bangla: 'জানা', level: '1', favorite: false },
+                    { id: 289, character: '中国', pinyin: 'Zhōngguó', meaning: 'China', bangla: 'চীন', level: '1', favorite: false },
+                    { id: 290, character: '中文', pinyin: 'Zhōngwén', meaning: 'Chinese (language)', bangla: 'চীনা (ভাষা)', level: '1', favorite: false },
+                    { id: 291, character: '中午', pinyin: 'zhōng wǔ', meaning: 'noon / midday', bangla: 'দুপুর', level: '1', favorite: false },
+                    { id: 292, character: '中学', pinyin: 'zhōng xué', meaning: 'middle school / secondary school', bangla: 'মাধ্যমিক বিদ্যালয়', level: '1', favorite: false },
+                    { id: 293, character: '中学生', pinyin: 'zhōng xué shēng', meaning: 'middle school student', bangla: 'মাধ্যমিক বিদ্যালয়ের ছাত্র', level: '1', favorite: false },
+                    { id: 294, character: '住', pinyin: 'zhù', meaning: 'to live / to reside', bangla: 'থাকা / বাস করা', level: '1', favorite: false },
+                    { id: 295, character: '桌子', pinyin: 'zhuō zi', meaning: 'table / desk', bangla: 'টেবিল', level: '1', favorite: false },
+                    { id: 296, character: '字', pinyin: 'zì', meaning: 'character / word', bangla: 'অক্ষর / শব্দ', level: '1', favorite: false },
+                    { id: 297, character: '坐', pinyin: 'zuò', meaning: 'to sit', bangla: 'বসা', level: '1', favorite: false },
+                    { id: 298, character: '做', pinyin: 'zuò', meaning: 'to do / to make', bangla: 'করা / তৈরি করা', level: '1', favorite: false },
+                    { id: 299, character: '做饭', pinyin: 'zuò fàn', meaning: 'to cook / to prepare a meal', bangla: 'রান্না করা', level: '1', favorite: false },
+                    { id: 300, character: '昨天', pinyin: 'zuó tiān', meaning: 'yesterday', bangla: 'গতকাল', level: '1', favorite: false },
+                    
+                    // HSK Level 2 words with Bangla meanings
+                    { id: 101, character: '爱好', pinyin: 'àihào', meaning: 'hobby; interest', bangla: 'শখ; আগ্রহ', level: '2', favorite: false },
+                    { id: 102, character: '安静', pinyin: 'ānjìng', meaning: 'quiet; peaceful', bangla: 'শান্ত; নিরব', level: '2', favorite: false },
+                    { id: 103, character: '把', pinyin: 'bǎ', meaning: '(particle indicating direct object)', bangla: '(সরাসরি বস্তু নির্দেশক কণা)', level: '2', favorite: false },
+                    { id: 104, character: '办法', pinyin: 'bànfǎ', meaning: 'method; way', bangla: 'পদ্ধতি; উপায়', level: '2', favorite: false },
+                    { id: 105, character: '办公室', pinyin: 'bàngōngshì', meaning: 'office', bangla: 'অফিস', level: '2', favorite: false },
+                    { id: 106, character: '帮忙', pinyin: 'bāngmáng', meaning: 'to help', bangla: 'সাহায্য করা', level: '2', favorite: false },
+                    { id: 107, character: '饱', pinyin: 'bǎo', meaning: 'full (after eating)', bangla: 'পেট ভরা (খাওয়ার পর)', level: '2', favorite: false },
+                    { id: 108, character: '北方', pinyin: 'běifāng', meaning: 'north; northern part', bangla: 'উত্তর; উত্তরাঞ্চল', level: '2', favorite: false },
+                    { id: 109, character: '被', pinyin: 'bèi', meaning: '(passive marker); quilt', bangla: '(প্যাসিভ মার্কার); লেপ', level: '2', favorite: false },
+                    { id: 110, character: '比较', pinyin: 'bǐjiào', meaning: 'to compare; relatively', bangla: 'তুলনা করা; অপেক্ষাকৃত', level: '2', favorite: false },
+                    
+                    // HSK Level 3 words with Bangla meanings
+                    { id: 201, character: '啊', pinyin: 'a', meaning: 'ah! / oh!', bangla: 'আহ! / ওহ!', level: '3', favorite: false },
+                    { id: 202, character: '阿姨', pinyin: 'āyí', meaning: 'aunt; woman of one\'s parents\' generation', bangla: 'চাচী; বাবা-মায়ের বয়সী মহিলা', level: '3', favorite: false },
+                    { id: 203, character: '矮', pinyin: 'ǎi', meaning: 'short (height)', bangla: 'খাটো (উচ্চতা)', level: '3', favorite: false },
+                    { id: 204, character: '爱好', pinyin: 'àihào', meaning: 'hobby; interest', bangla: 'শখ; আগ্রহ', level: '3', favorite: false },
+                    { id: 205, character: '安静', pinyin: 'ānjìng', meaning: 'quiet; peaceful', bangla: 'শান্ত; নিরব', level: '3', favorite: false },
+                    { id: 206, character: '把', pinyin: 'bǎ', meaning: '(particle indicating direct object)', bangla: '(সরাসরি বস্তু নির্দেশক কণা)', level: '3', favorite: false },
+                    { id: 207, character: '搬', pinyin: 'bān', meaning: 'to move (house)', bangla: 'স্থানান্তর করা (বাড়ি)', level: '3', favorite: false },
+                    { id: 208, character: '班', pinyin: 'bān', meaning: 'class; shift', bangla: 'ক্লাস; শিফট', level: '3', favorite: false },
+                    { id: 209, character: '办法', pinyin: 'bànfǎ', meaning: 'method; way', bangla: 'পদ্ধতি; উপায়', level: '3', favorite: false },
+                    { id: 210, character: '办公室', pinyin: 'bàngōngshì', meaning: 'office', bangla: 'অফিস', level: '3', favorite: false },
+                    
+                    // HSK Level 4 words with Bangla meanings
+                    { id: 301, character: '爱情', pinyin: 'àiqíng', meaning: 'romantic love', bangla: 'রোমান্টিক ভালবাসা', level: '4', favorite: false },
+                    { id: 302, character: '安排', pinyin: 'ānpái', meaning: 'to arrange; arrangement', bangla: 'ব্যবস্থা করা; ব্যবস্থা', level: '4', favorite: false },
+                    { id: 303, character: '安全', pinyin: 'ānquán', meaning: 'safe; safety', bangla: 'নিরাপদ; নিরাপত্তা', level: '4', favorite: false },
+                    { id: 304, character: '暗', pinyin: 'àn', meaning: 'dark; hidden', bangla: 'অন্ধকার; গোপন', level: '4', favorite: false },
+                    { id: 305, character: '按时', pinyin: 'ànshí', meaning: 'on time; punctual', bangla: 'সময়মত; সময়নিষ্ঠ', level: '4', favorite: false },
+                    { id: 306, character: '按照', pinyin: 'ànzhào', meaning: 'according to; in accordance with', bangla: 'অনুসারে; মোতাবেক', level: '4', favorite: false },
+                    { id: 307, character: '包括', pinyin: 'bāokuò', meaning: 'to include; including', bangla: 'অন্তর্ভুক্ত করা; সহ', level: '4', favorite: false },
+                    { id: 308, character: '保护', pinyin: 'bǎohù', meaning: 'to protect; protection', bangla: 'রক্ষা করা; সুরক্ষা', level: '4', favorite: false },
+                    { id: 309, character: '保证', pinyin: 'bǎozhèng', meaning: 'to guarantee; guarantee', bangla: 'গ্যারান্টি দেওয়া; নিশ্চয়তা', level: '4', favorite: false },
+                    { id: 310, character: '抱', pinyin: 'bào', meaning: 'to hold; to hug', bangla: 'ধরা; আলিঙ্গন করা', level: '4', favorite: false }
+                ],
+                searchTerm: '',
+                currentLevel: 'all',
+                currentLanguage: 'english',
+                filteredVocab: [],
+                favoriteCount: 0,
+                searchTimeout: null,
+                speakingWordId: null,
+                showNotification: false,
+                notificationMessage: '',
+                notificationType: 'success',
+                
+                init() {
+                    this.filteredVocab = [...this.vocab];
+                    this.updateFavoriteCount();
+                    this.checkSpeechSupport();
+                },
+                
+                setLevel(level) {
+                    this.currentLevel = level;
+                    this.filterVocab();
+                },
+                
+                debouncedSearch() {
+                    clearTimeout(this.searchTimeout);
+                    this.searchTimeout = setTimeout(() => {
+                        this.filterVocab();
+                    }, 300);
+                },
+                
+                filterVocab() {
+                    let filtered = this.vocab;
+                    
+                    if (this.currentLevel !== 'all') {
+                        filtered = filtered.filter(word => word.level === this.currentLevel);
+                    }
+                    
+                    if (this.searchTerm) {
+                        const term = this.searchTerm.toLowerCase();
+                        filtered = filtered.filter(word => 
+                            word.character.toLowerCase().includes(term) ||
+                            word.pinyin.toLowerCase().includes(term) ||
+                            word.meaning.toLowerCase().includes(term) ||
+                            word.bangla.toLowerCase().includes(term)
+                        );
+                    }
+                    
+                    this.filteredVocab = filtered;
+                },
+                
+                toggleFavorite(id) {
+                    const word = this.vocab.find(w => w.id === id);
+                    if (word) {
+                        word.favorite = !word.favorite;
+                        this.updateFavoriteCount();
+                        this.showNotification(
+                            word.favorite ? 'Added to favorites' : 'Removed from favorites',
+                            'success'
+                        );
+                    }
+                },
+                
+                updateFavoriteCount() {
+                    this.favoriteCount = this.vocab.filter(word => word.favorite).length;
+                },
+                
+                getLevelCount(level) {
+                    if (level === 'all') {
+                        return this.vocab.length;
+                    }
+                    return this.vocab.filter(word => word.level === level).length;
+                },
+                
+                speakWord(word) {
+                    if (!('speechSynthesis' in window)) {
+                        this.showNotification('Speech synthesis not supported in your browser', 'error');
+                        return;
+                    }
+                    
+                    // Stop any ongoing speech
+                    speechSynthesis.cancel();
+                    
+                    const utterance = new SpeechSynthesisUtterance(word.character);
+                    utterance.lang = 'zh-CN';
+                    utterance.rate = 0.8;
+                    utterance.pitch = 1;
+                    
+                    this.speakingWordId = word.id;
+                    
+                    utterance.onend = () => {
+                        this.speakingWordId = null;
+                    };
+                    
+                    utterance.onerror = (error) => {
+                        this.speakingWordId = null;
+                        this.showNotification('Speech synthesis failed: ' + error.error, 'error');
+                    };
+                    
+                    try {
+                        speechSynthesis.speak(utterance);
+                        this.showNotification(`Playing pronunciation: ${word.character}`, 'success');
+                    } catch (error) {
+                        this.showNotification('Error playing speech: ' + error.message, 'error');
+                    }
+                },
+                
+                checkSpeechSupport() {
+                    if (!('speechSynthesis' in window)) {
+                        this.showNotification('Text-to-speech is not supported in your browser', 'error');
+                    }
+                },
+                
+                showNotification(message, type = 'success') {
+                    this.notificationMessage = message;
+                    this.notificationType = type;
+                    this.showNotification = true;
+                    
+                    setTimeout(() => {
+                        this.showNotification = false;
+                    }, 3000);
+                },
+                
+                scrollToTop() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
