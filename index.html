@@ -191,12 +191,8 @@
             color: white;
             font-weight: 500;
             z-index: 1001;
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-        }
-        
-        .notification.show {
-            transform: translateX(0);
+            max-width: min(90vw, 360px);
+            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.25);
         }
         
         .notification.success {
