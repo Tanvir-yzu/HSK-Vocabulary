@@ -2761,11 +2761,15 @@ function vocabApp() {
                 favoriteCount: 0,
                 searchTimeout: null,
                 speakingWordId: null,
-                showNotification: false,
+                notificationVisible: false,
                 notificationMessage: '',
                 notificationType: 'success',
                 
                 init() {
+                    this.vocab = this.vocab.map((word, index) => ({
+                        ...word,
+                        id: index + 1
+                    }));
                     this.filteredVocab = [...this.vocab];
                     this.updateFavoriteCount();
                     this.checkSpeechSupport();
@@ -2808,7 +2812,7 @@ function vocabApp() {
                     if (word) {
                         word.favorite = !word.favorite;
                         this.updateFavoriteCount();
-                        this.showNotification(
+                        this.showToast(
                             word.favorite ? 'Added to favorites' : 'Removed from favorites',
                             'success'
                         );
@@ -2828,7 +2832,7 @@ function vocabApp() {
                 
                 speakWord(word) {
                     if (!('speechSynthesis' in window)) {
-                        this.showNotification('Speech synthesis not supported in your browser', 'error');
+                        this.showToast('Speech synthesis not supported in your browser', 'error');
                         return;
                     }
                     
@@ -2848,30 +2852,30 @@ function vocabApp() {
                     
                     utterance.onerror = (error) => {
                         this.speakingWordId = null;
-                        this.showNotification('Speech synthesis failed: ' + error.error, 'error');
+                        this.showToast('Speech synthesis failed: ' + error.error, 'error');
                     };
                     
                     try {
                         speechSynthesis.speak(utterance);
-                        this.showNotification(`Playing pronunciation: ${word.character}`, 'success');
+                        this.showToast(`Playing pronunciation: ${word.character}`, 'success');
                     } catch (error) {
-                        this.showNotification('Error playing speech: ' + error.message, 'error');
+                        this.showToast('Error playing speech: ' + error.message, 'error');
                     }
                 },
                 
                 checkSpeechSupport() {
                     if (!('speechSynthesis' in window)) {
-                        this.showNotification('Text-to-speech is not supported in your browser', 'error');
+                        this.showToast('Text-to-speech is not supported in your browser', 'error');
                     }
                 },
                 
-                showNotification(message, type = 'success') {
+                showToast(message, type = 'success') {
                     this.notificationMessage = message;
                     this.notificationType = type;
-                    this.showNotification = true;
+                    this.notificationVisible = true;
                     
                     setTimeout(() => {
-                        this.showNotification = false;
+                        this.notificationVisible = false;
                     }, 3000);
                 },
                 

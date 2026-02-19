@@ -9,25 +9,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --surface: #ffffff;
+            --surface-soft: #f8fafc;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --ring: rgba(99, 102, 241, 0.2);
+        }
+
         * {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
         
         .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.18), transparent 40%),
+                radial-gradient(circle at 80% 0%, rgba(167, 139, 250, 0.35), transparent 36%),
+                linear-gradient(135deg, #4f46e5 0%, #7c3aed 52%, #0ea5e9 100%);
         }
         
         .card-hover {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background: linear-gradient(145deg, #ffffff, #f8fafc);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(155deg, var(--surface), var(--surface-soft));
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
         }
         
         .card-hover:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 24px 45px -18px rgba(15, 23, 42, 0.35);
+            border-color: rgba(99, 102, 241, 0.4);
         }
         
         .level-badge {
@@ -80,28 +92,29 @@
         }
         
         .search-input {
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.97);
+            border: 1px solid rgba(148, 163, 184, 0.22);
             transition: all 0.3s ease;
         }
         
         .search-input:focus {
             border-color: #6366f1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            box-shadow: 0 0 0 4px var(--ring);
             background: white;
         }
         
         .stat-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.88));
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(148, 163, 184, 0.2);
             border-radius: 16px;
             transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
         }
         
         .stat-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
         }
         
         .filter-btn {
@@ -195,10 +208,10 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+<body class="bg-gradient-to-br from-slate-50 via-indigo-50/40 to-cyan-50 min-h-screen text-slate-900">
     <div x-data="vocabApp()" x-init="init()" class="min-h-screen">
         <!-- Notification -->
-        <div x-show="showNotification" 
+        <div x-show="notificationVisible" 
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="transform translate-x-full"
              x-transition:enter-end="transform translate-x-0"
@@ -207,7 +220,7 @@
              x-transition:leave-end="transform translate-x-full"
              :class="notificationType === 'success' ? 'notification success' : 'notification error'"
              x-text="notificationMessage"
-             @click="showNotification = false"
+               @click="notificationVisible = false"
              class="cursor-pointer">
         </div>
 
