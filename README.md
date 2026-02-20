@@ -1,115 +1,107 @@
-# 📚 HSK Vocabulary — 汉语水平考试词汇
+# HSK Vocabulary · 汉语水平考试词汇
 
-A modern, interactive web application for learning **Chinese (Mandarin) vocabulary** from the HSK (Hanyu Shuiping Kaoshi) standardized test, with meanings in both **English** and **Bangla (Bengali)** — বাংলা অর্থ সহ.
+<div align="center">
 
----
+### Modern bilingual HSK vocabulary explorer (English + বাংলা)
 
-## 🌟 Features
+[![HTML](https://img.shields.io/badge/HTML-5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](index.html)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](vocab.js)
+[![Alpine.js](https://img.shields.io/badge/Alpine.js-3.x-8BC0D0?style=for-the-badge&logo=alpinedotjs&logoColor=black)](https://alpinejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-CDN-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![MIT License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-- **1,630+ HSK Words** covering levels 1 through 4
-- **Bilingual Meanings** — switch between English and বাংলা (Bangla) at any time
-- **Level Filtering** — browse vocabulary by HSK 1, 2, 3, or 4
-- **Live Search** — instantly search by Chinese character, pinyin, or meaning
-- **🔊 Text-to-Speech** — listen to the correct Mandarin pronunciation of every word
-- **❤️ Favourites** — bookmark words you want to review later (persisted in-session)
-- **Responsive Design** — works on desktop, tablet, and mobile
+</div>
 
----
+## Overview
 
-## 📊 Vocabulary Coverage
+HSK Vocabulary is a responsive web app for learning Mandarin words used in the HSK exam.
+It supports bilingual definitions (**English** and **বাংলা**) with fast filtering, instant search, and built-in pronunciation playback.
 
-| HSK Level | Words | Description |
-|-----------|-------|-------------|
-| HSK 1 | 300 | Beginner — everyday basics |
-| HSK 2 | 200 | Elementary — simple conversations |
-| HSK 3 | 1,120 | Intermediate — broader topics |
-| HSK 4 | 10+ | Upper-intermediate (growing) |
-| **Total** | **1,630+** | |
+## Highlights
 
----
+- 📚 **1,630+ words** across HSK levels 1–4
+- 🌐 **Dual-language meanings** (English ↔ বাংলা)
+- 🔎 **Live search** by character, pinyin, or meaning
+- 🎯 **Level filters** for focused study sessions
+- 🔊 **Text-to-Speech** using the Web Speech API
+- ❤️ **Favorites** tracking for quick review
+- 📱 **Mobile-friendly UI** with modern styling
 
-## 🚀 Getting Started
+## Quick Start
 
-No build step or installation required. The app runs entirely in the browser.
+This is a static project — no build step required.
 
-1. **Clone the repository**
+1. Clone the repo
+
    ```bash
    git clone https://github.com/Tanvir-yzu/HSK-Vocabulary.git
    cd HSK-Vocabulary
    ```
 
-2. **Open `index.html`** in any modern web browser:
+2. Open the app
+
    ```bash
-   # macOS
-   open index.html
-
-   # Linux
-   xdg-open index.html
-
    # Windows
    start index.html
+
+   # Or run a local server (recommended for speech support)
+   npx serve .
    ```
 
-   Or simply drag-and-drop `index.html` into your browser.
+3. Browse to the served URL (usually `http://localhost:3000`)
 
-> **Tip:** For the Text-to-Speech feature to work correctly, open the file via a local web server (e.g. `npx serve .` or the VS Code Live Server extension) rather than as a plain `file://` URL.
+## Vocabulary Snapshot
 
----
+| Level | Words |
+|------:|------:|
+| HSK 1 | 300 |
+| HSK 2 | 200 |
+| HSK 3 | 1,120 |
+| HSK 4 | 10+ |
+| **Total** | **1,630+** |
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-| Technology | Purpose |
-|-----------|---------|
-| [Alpine.js](https://alpinejs.dev/) | Reactive UI framework |
-| [Tailwind CSS](https://tailwindcss.com/) | Utility-first CSS styling |
-| [Font Awesome 6](https://fontawesome.com/) | Icons |
-| [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis) | Text-to-speech pronunciation |
-| Vanilla JavaScript (ES6+) | Application logic & vocabulary data |
+- **UI:** Tailwind CSS + custom modern styling
+- **Interactivity:** Alpine.js
+- **Logic/Data:** Vanilla JavaScript (`vocab.js`)
+- **Icons:** Font Awesome
+- **Pronunciation:** Browser Web Speech API
 
----
+## Project Structure
 
-## 📁 Project Structure
-
+```text
+hsk/
+├─ index.html
+├─ vocab.js
+├─ README.md
+├─ REFACTORING_SUMMARY.md
+└─ LICENSE
 ```
-HSK-Vocabulary/
-├── index.html          # Main application & UI
-├── vocab.js            # Vocabulary data + Alpine.js app logic
-└── README.md           # This file
-```
 
----
+## Usage
 
-## 🖥️ Usage
+- Use level chips to filter by HSK level
+- Search any Chinese character, pinyin, or translation
+- Toggle language between English and বাংলা
+- Click 🔊 to hear pronunciation
+- Click ❤️ to save favorites
 
-| Action | How |
-|--------|-----|
-| Filter by level | Click **HSK 1 / 2 / 3 / 4** or **All Levels** |
-| Search | Type in the search box (character, pinyin, or meaning) |
-| Switch language | Toggle **English ↔ বাংলা** in the header |
-| Listen to a word | Click the 🔊 speaker icon on any card |
-| Mark as favourite | Click the ❤️ heart icon on any card |
-| Return to top | Click the floating ↑ button |
+## Contributing
 
----
-
-## 🤝 Contributing
-
-Contributions are welcome! If you'd like to add more vocabulary words, fix translations, or improve the UI:
+Contributions are welcome.
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/add-hsk5-words`)
-3. Commit your changes (`git commit -m 'Add HSK 5 vocabulary'`)
-4. Push the branch (`git push origin feature/add-hsk5-words`)
-5. Open a Pull Request
+2. Create a feature branch (`feature/your-change`)
+3. Commit changes with clear messages
+4. Open a pull request
+
+## License
+
+Licensed under the MIT License. See [LICENSE](LICENSE).
 
 ---
 
-## 📄 License
-
-This project is open source and available under the [MIT License](https://opensource.org/licenses/MIT).
-
----
-
-<p align="center">
-  Made with ❤️ for Chinese language learners &nbsp;|&nbsp; বাংলাভাষী শিক্ষার্থীদের জন্য তৈরি
-</p>
+<div align="center">
+Made for Mandarin learners · বাংলাভাষী শিক্ষার্থীদের জন্য ❤️
+</div>
